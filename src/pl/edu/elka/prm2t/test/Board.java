@@ -8,14 +8,16 @@ public class Board {
         return grid;
     }
 
-    public void displayGrid(){
 
+
+    //trzeba dodać rozróżnienie pionka i damki
+    public void displayGrid(){
         for (int j = 0; j < 8; j++) {
             String row = "";
             for (int i = 0; i < 8; i++) {
                 try{
-                    if(grid[i][j].getColor().equals("white")) row += "1";
-                    if(grid[i][j].getColor().equals("black")) row += "2";
+                    if(grid[i][j].getColor().equals("white")) row += "w";
+                    if(grid[i][j].getColor().equals("black")) row += "b";
                 }catch (NullPointerException e){
                     row += "0";
                 }

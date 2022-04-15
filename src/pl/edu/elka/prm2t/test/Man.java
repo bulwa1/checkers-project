@@ -21,11 +21,14 @@ public class Man {
         return color;
     }
 
+
     public void showPos(){
         System.out.println(x);
         System.out.println(y);
     }
 
+
+    // po wybraniu pola przez gracza będzie sprawdzane, czy ruch jest możliwy
     public void move(int toX, int toY){
         // check if legal toX toY zasady
         // if true
@@ -33,10 +36,15 @@ public class Man {
         this.x = toX;
         this.y = toY;
         grid[toX][toY] = this;
-
-
-
-
     }
 
+
+
+    // to będzie się aktywować dopiero po ruchu, gdy będzie sprawdzane, czy pionek jest na końcu planszy
+    public void becomeKing(Man manToRemove){
+        grid[x][y] = null;
+        King promotedMan = new King(color, x, y, grid);
+        Player.getMenList().remove(manToRemove);
+        Player.getMenList().add(promotedMan);
+    }
 }

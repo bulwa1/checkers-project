@@ -15,8 +15,10 @@ public class Game {
         Player playerBlack = new Player("black", mainBoard);
 
         // program testowy
-        // pokazuje 1 gdy na danym polu jest biały pionek
-        // pokazuje 2 gdy na danym polu jest czarny pionek
+        // pokazuje w gdy na danym polu jest biały pionek
+        // pokazuje W gdy na danym polu jest biała damka
+        // pokazuje b gdy na danym polu jest czarny pionek
+        // pokazuje B gdy na danym polu jest czarna damka
         // pokazuje 0 gdy na dane pole jest puste
         System.out.println("Plansza początkowa:");
         mainBoard.displayGrid();
