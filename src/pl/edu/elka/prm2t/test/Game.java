@@ -33,3 +33,5 @@ public class Game {
         init(); // program testowy
     }
 }
+
+//test commita
