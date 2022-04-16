@@ -9,11 +9,22 @@ public class Game {
 
     // public static void save()
 
-    public static void init(){
-        Board mainBoard = new Board();
-        Player playerWhite = new Player("white", mainBoard);
-        Player playerBlack = new Player("black", mainBoard);
+    // tworzenie atrybutów aby można było się do następnie odnosić
+    private Board mainBoard;
+    private Player playerWhite;
+    private Player playerBlack;
 
+    Game(){
+        mainBoard = new Board();
+        playerWhite = new Player("white", mainBoard);
+        playerBlack = new Player("black", mainBoard);
+    }
+
+    public Board getMainBoard() {
+        return mainBoard;
+    }
+
+    public void init(){
         // program testowy
         // pokazuje w gdy na danym polu jest biały pionek
         // pokazuje W gdy na danym polu jest biała damka
@@ -31,9 +42,5 @@ public class Game {
         mainBoard.displayGrid();
     }
 
-    public static void main(String[] args) {
-        init(); // program testowy
-    }
 }
 
-//test commita

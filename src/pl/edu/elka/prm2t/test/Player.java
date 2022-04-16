@@ -3,7 +3,7 @@ package pl.edu.elka.prm2t.test;
 import java.util.ArrayList;
 
 public class Player {
-    public static ArrayList<Man> menList = new ArrayList<>(); // tymczasowo publiczne
+    private static ArrayList<Man> menList = new ArrayList<>();
     private String color = "";
     private Board boardRef;
 
