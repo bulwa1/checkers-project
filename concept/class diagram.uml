@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>pl.edu.elka.prm2t.test</OriginalElement>
+  <nodes>
+    <node x="0.0" y="333.0">pl.edu.elka.prm2t.test.Player</node>
+    <node x="220.0" y="0.0">pl.edu.elka.prm2t.test.Game</node>
+    <node x="48.5" y="259.0">pl.edu.elka.prm2t.test.King</node>
+    <node x="0.0" y="543.0">pl.edu.elka.prm2t.test.Main</node>
+    <node x="0.0" y="0.0">pl.edu.elka.prm2t.test.Man</node>
+    <node x="253.0" y="333.0">pl.edu.elka.prm2t.test.Screen</node>
+    <node x="486.0" y="333.0">pl.edu.elka.prm2t.test.Board</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="pl.edu.elka.prm2t.test.King" target="pl.edu.elka.prm2t.test.Man" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="104.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="315.0" y="298.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
     private ArrayList<String> movesHistory = new ArrayList<>();
+    private String gameStatus;
 
    // public static void load()
 
