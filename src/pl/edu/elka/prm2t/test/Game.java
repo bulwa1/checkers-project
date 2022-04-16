@@ -26,7 +26,7 @@ public class Game {
         System.out.println(" ");
         System.out.println("Plansza po ruchu:");
 
-        playerWhite.moveMan(0, 6, 1, 5);
+        playerWhite.moveMan(0, 5, 1, 4);
 
         mainBoard.displayGrid();
     }

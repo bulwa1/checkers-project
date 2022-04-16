@@ -3,8 +3,8 @@ package pl.edu.elka.prm2t.test;
 public class Man {
     private int x;
     private int y;
-    private Man[][] grid;
-    private String color;
+    private final Man[][] grid;
+    private final String color;
 
     Man(String color, int x, int y, Man[][] grid){
         this.color = color;
