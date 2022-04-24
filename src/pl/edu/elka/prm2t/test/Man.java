@@ -13,9 +13,9 @@ public class Man {
         this.grid = grid;
     }
 
-    private boolean checkIfLegal(){
-        return true;
-    }
+//    private boolean checkIfLegal(){
+//
+//    }
 
     public String getColor(){
         return color;

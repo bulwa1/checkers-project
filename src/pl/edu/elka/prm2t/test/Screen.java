@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Screen extends JPanel {
 
-    private int fieldSize = 64; // wielkość jednego pola
+    private final int fieldSize = 64; // wielkość jednego pola
     private Board boardRef; // referencja do obiektu Board
 
     Screen(Board boardRef){

@@ -3,7 +3,7 @@ package pl.edu.elka.prm2t.test;
 import java.util.ArrayList;
 
 public class Game {
-    private ArrayList<String> movesHistory = new ArrayList<>();
+    private final ArrayList<String> movesHistory = new ArrayList<>();
     private String gameStatus;
 
    // public static void load()
@@ -11,7 +11,7 @@ public class Game {
     // public static void save()
 
     // tworzenie atrybutów aby można było się do następnie odnosić
-    private Board mainBoard;
+    private final Board mainBoard;
     private Player playerWhite;
     private Player playerBlack;
 
