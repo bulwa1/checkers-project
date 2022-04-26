@@ -1,4 +1,4 @@
-package pl.edu.elka.prm2t.test;
+package pl.edu.elka.prm2t.checkers;
 
 import javax.swing.*;
 

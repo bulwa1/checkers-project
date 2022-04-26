@@ -1,4 +1,4 @@
-package pl.edu.elka.prm2t.test;
+package pl.edu.elka.prm2t.checkers;
 
 public class King extends Man{
     King(String color, int x, int y, Man[][] grid){
