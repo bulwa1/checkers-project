@@ -9,7 +9,6 @@ public class Board {
     }
 
 
-
     //trzeba dodać rozróżnienie pionka i damki
     public void displayGrid(){
         for (int j = 0; j < 8; j++) {
