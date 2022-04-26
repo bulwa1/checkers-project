@@ -4,7 +4,7 @@ public class Man {
     private int x;
     private int y;
     private final Man[][] grid;
-    private final String color;
+    private String color;
 
     Man(String color, int x, int y, Man[][] grid){
         this.color = color;
@@ -36,15 +36,22 @@ public class Man {
         this.x = toX;
         this.y = toY;
         grid[toX][toY] = this;
+        if (toY == 0 && color.equals("white")){
+            becomeKing(this);
+        }
+        if (toX == 7 && color.equals("black")){
+            becomeKing(this);
+        }
     }
 
 
 
     // to będzie się aktywować dopiero po ruchu, gdy będzie sprawdzane, czy pionek jest na końcu planszy
-    public void becomeKing(Man manToRemove){
+    private void becomeKing(Man manToRemove){
         grid[x][y] = null;
         King promotedMan = new King(color, x, y, grid);
         Player.getMenList().remove(manToRemove);
+        grid[x][y] = promotedMan;
         Player.getMenList().add(promotedMan);
     }
 }

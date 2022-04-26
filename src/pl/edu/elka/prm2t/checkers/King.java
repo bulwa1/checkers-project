@@ -5,4 +5,6 @@ public class King extends Man{
         super(color, x, y, grid);
         //super(x, y);
     }
+
+
 }

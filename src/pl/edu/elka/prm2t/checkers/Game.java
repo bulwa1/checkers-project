@@ -11,7 +11,7 @@ public class Game {
     // public static void save()
 
     // tworzenie atrybutów aby można było się do następnie odnosić
-    private final Board mainBoard;
+    private Board mainBoard;
     private Player playerWhite;
     private Player playerBlack;
 
