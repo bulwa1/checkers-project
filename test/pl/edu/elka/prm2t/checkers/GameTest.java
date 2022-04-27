@@ -10,26 +10,26 @@ class GameTest {
     void showPos() {
 
     }
-
-    @Test
-    void moveMan(){
-        Board mainBoard = new Board();
-        Player playerWhite = new Player("white", mainBoard);
-        playerWhite.moveMan(0, 5, 1, 4);
-        assertNull(mainBoard.getGrid()[0][5]);
-        assertNotNull(mainBoard.getGrid()[1][4]);
-
-    }
-
-    @Test
-    void becomeKing(){
-        Board mainBoard = new Board();
-        Player playerWhite = new Player("white", mainBoard);
-        playerWhite.moveMan(0,5,0,0);
-        System.out.println(mainBoard.getGrid()[0][0].getClass());
-
-        assertEquals(true, mainBoard.getGrid()[0][0] instanceof King);
-
-
-    }
+//
+//    @Test
+//    void moveMan(){
+//        Board mainBoard = new Board();
+//        Player playerWhite = new Player("white", mainBoard);
+//        playerWhite.moveMan(0, 5, 1, 4);
+//        assertNull(mainBoard.getGrid()[0][5]);
+//        assertNotNull(mainBoard.getGrid()[1][4]);
+//
+//    }
+//
+//    @Test
+//    void becomeKing(){
+//        Board mainBoard = new Board();
+//        Player playerWhite = new Player("white", mainBoard);
+//        playerWhite.moveMan(0,5,0,0);
+//        System.out.println(mainBoard.getGrid()[0][0].getClass());
+//
+//        assertEquals(true, mainBoard.getGrid()[0][0] instanceof King);
+//
+//
+//    }
 }

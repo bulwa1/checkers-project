@@ -1,26 +1,15 @@
 package pl.edu.elka.prm2t.checkers;
 
-public class Man {
+public abstract class Man {
     private int x;
     private int y;
     private final Man[][] grid;
-    private String color;
 
-    Man(String color, int x, int y, Man[][] grid){
-        this.color = color;
+    Man(int x, int y, Man[][] grid){
         this.x = x;
         this.y = y;
         this.grid = grid;
     }
-
-//    private boolean checkIfLegal(){
-//
-//    }
-
-    public String getColor(){
-        return color;
-    }
-
 
     public void showPos(){
         System.out.println(x);
@@ -36,22 +25,18 @@ public class Man {
         this.x = toX;
         this.y = toY;
         grid[toX][toY] = this;
-        if (toY == 0 && color.equals("white")){
-            becomeKing(this);
-        }
-        if (toX == 7 && color.equals("black")){
-            becomeKing(this);
-        }
+
     }
 
 
 
     // to będzie się aktywować dopiero po ruchu, gdy będzie sprawdzane, czy pionek jest na końcu planszy
-    private void becomeKing(Man manToRemove){
+    // do poprawienia
+    protected void becomeKing(Man manToRemove){
         grid[x][y] = null;
-        King promotedMan = new King(color, x, y, grid);
-        Player.getMenList().remove(manToRemove);
-        grid[x][y] = promotedMan;
-        Player.getMenList().add(promotedMan);
+//        King promotedMan = new King(x, y, grid);
+//        Player.getMenList().remove(manToRemove);
+//        grid[x][y] = promotedMan;
+//        Player.getMenList().add(promotedMan);
     }
 }

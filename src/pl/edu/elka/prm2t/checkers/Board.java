@@ -14,12 +14,9 @@ public class Board {
         for (int j = 0; j < 8; j++) {
             String row = "";
             for (int i = 0; i < 8; i++) {
-                try{
-                    if(grid[i][j].getColor().equals("white")) row += "w";
-                    if(grid[i][j].getColor().equals("black")) row += "b";
-                }catch (NullPointerException e){
-                    row += "0";
-                }
+                    if(grid[i][j] instanceof WhiteMan) row += "w";
+                    if(grid[i][j] instanceof BlackMan) row += "b";
+                    if(grid[i][j] == null) row += "0";
 
             }
             System.out.println(row);

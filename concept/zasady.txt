@@ -1,0 +1,7 @@
+Plansza 8x8
+
+Pionki poruszaja sie tylko do przodu
+Pionki moga bic do tylu
+Damka porusza sie jak goniec w szachach do konca rzędu
+
+(trzeba dodac ograniczenia planszy z lewej i prawej strony (index out of bounds))

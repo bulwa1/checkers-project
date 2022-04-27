@@ -17,8 +17,8 @@ public class Game {
 
     Game(){
         mainBoard = new Board();
-        playerWhite = new Player("white", mainBoard);
-        playerBlack = new Player("black", mainBoard);
+        playerWhite = new WhitePlayer(mainBoard);
+        playerBlack = new BlackPlayer(mainBoard);
     }
 
     public Board getMainBoard() {
@@ -35,12 +35,12 @@ public class Game {
         System.out.println("Plansza początkowa:");
         mainBoard.displayGrid();
 
-        System.out.println(" ");
-        System.out.println("Plansza po ruchu:");
-
-        playerWhite.moveMan(0, 5, 1, 4);
-
-        mainBoard.displayGrid();
+//        System.out.println(" ");
+//        System.out.println("Plansza po ruchu:");
+//
+//        //playerWhite.moveMan(0, 5, 1, 4);
+//
+//        mainBoard.displayGrid();
     }
 
 }

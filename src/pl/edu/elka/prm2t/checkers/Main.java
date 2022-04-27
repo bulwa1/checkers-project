@@ -20,8 +20,8 @@ public class Main {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                final int fieldX = e.getX() / 64;
-                final int fieldY = e.getY() / 64;
+                final int fieldX = (e.getX() - s.getOffSetX()) / 64;
+                final int fieldY = (e.getY() - s.getOffSetY()) / 64;
 
                 if(chosenFigure == null){
                     chosenFigure = game.getMainBoard().getGrid()[fieldX][fieldY]; // tutaj trzeba ulatwic dostep
@@ -65,8 +65,7 @@ public class Main {
                 //
             }
         });
-
-        f.setSize(512, 600);
+        f.setSize(600, 600);
         f.setVisible(true);
     }
 }
