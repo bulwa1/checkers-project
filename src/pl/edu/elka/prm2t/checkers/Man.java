@@ -1,5 +1,7 @@
 package pl.edu.elka.prm2t.checkers;
 
+import java.util.ArrayList;
+
 public abstract class Man {
     private int x;
     private int y;
@@ -14,6 +16,14 @@ public abstract class Man {
     public void showPos(){
         System.out.println(x);
         System.out.println(y);
+    }
+
+    public int getXPos(){
+        return x;
+    }
+
+    public int getYPos(){
+        return y;
     }
 
 
