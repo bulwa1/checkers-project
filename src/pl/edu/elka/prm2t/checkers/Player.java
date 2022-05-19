@@ -41,6 +41,7 @@ public abstract class Player {
             // bada wszystkie teoretycznie możliwe ruchy
             // odpala się, gdy TakeScanner nie wykryje bicia;
             // zaznacza pola, na które można się ruszyć danym pionem;
+            // jak nie znajdzie możliwych ruchów, to gracz przegrywa;
             // MOŻEMY PRZYJĄĆ WARIANT, GDZIE KRÓL SIĘ RUSZA TAK JAK PIONEK, ALE MOŻE TEŻ BIĆ DO TYŁU
         }
 

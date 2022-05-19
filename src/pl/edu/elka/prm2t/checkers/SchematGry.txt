@@ -1,0 +1,28 @@
+0. tura gracza 1
+1. sprawdzenie czy gracz ma jeszcze figury
+2. gracz klika pionek, którym chce się ruszyć
+2. sprawdzanie przymusów bicia dla wszystkich:
+    a) jak są, to zaznaczamy figurę, która musi bić (np pole na żółto):
+        figura się porusza, a figura zbita jest usuwana z planszy
+    b) jak nie ma, to sprawdza, czy pionek może się ruszyć:
+        a) jak tak, to pokazuje możliwe ruchy:
+            a) zwykły ruch, czyli figura zmienia pozycje
+            b) promocja -> pionek jest usuwany i na jego miejsce pojawia się król
+        b) jak nie, to sprawdza czy istnieją pionki, które mogą się liczyć:
+            a) jak nie, to gracz przegrywa
+            b) jeśli istnieją, to nic się nie dzieje (czeka na ruch gracza):
+                - analogia do 2.b)a)
+
+3. następuje ruch i jego konsekwencje na planszy
+4. nowa tura gracza 2
+
+
+sugerowane przeze mnie zasady:
+-plansza 8*8
+-pionki ruszają się tylko do przodu i biją do przodu
+-damka rusza się o jedno pole do przodu albo do tyłu (jak pionek++)
+-damka bije jak pionek, tylko że do przodu i do tyłu
+-gracz wygrywa, jak przeciwnik nie ma figur, albo nie może się ruszyć
+
+
+
