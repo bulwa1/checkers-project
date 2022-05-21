@@ -5,11 +5,11 @@ public class BlackMan extends Man{
         super(x, y, grid);
     }
 
-    @Override
-    public void move(int toX, int toY){
-        super.move(toX, toY);
-        if (toY == 7){
-            becomeKing(this);
-        }
-    }
+//    @Override
+//    public void move(int toX, int toY){
+//        super.moveForward(toX, toY);
+//        if (toY == 7){
+//            becomeKing(this);
+//        }
+//    }
 }

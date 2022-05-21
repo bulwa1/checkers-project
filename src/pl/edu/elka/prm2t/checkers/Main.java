@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
 
-        // kod potrzebny do wyswietlenia okienka
+        // kod potrzebny do wyświetlenia okienka
         JFrame f = new JFrame("Warcaby");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Screen s = new Screen(game.getMainBoard());
@@ -36,7 +36,7 @@ public class Main {
                     return;
                 }
                 if(chosenFigure != null){
-                    chosenFigure.move(fieldX, fieldY);
+                    chosenFigure.moveForward(fieldX, fieldY);
                     chosenFigure = null;
                     s.setChosenField(-1, -1);
                     s.repaint();
@@ -69,3 +69,4 @@ public class Main {
         f.setVisible(true);
     }
 }
+

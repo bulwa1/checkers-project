@@ -1,27 +1,63 @@
 package pl.edu.elka.prm2t.checkers;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Board {
 
-    private static Man[][] grid = new Man[8][8];
+    private static final Man[][] grid = new Man[8][8];
 
-    public Man[][] getGrid(){
+    public Man[][] getGrid() {
         return grid;
     }
 
 
-    //trzeba dodać rozróżnienie pionka i damki
-    public void displayGrid(){
+//    public void displayGrid() {
+//        for (int j = 0; j < 8; j++) {
+//            StringBuilder row = new StringBuilder();
+//            for (int i = 0; i < 8; i++) {
+//                if (grid[i][j] instanceof WhiteMan) row.append("w");
+//                if (grid[i][j] instanceof WhiteKing) row.append("W");
+//                if (grid[i][j] instanceof BlackMan) row.append("b");
+//                if (grid[i][j] instanceof BlackKing) row.append("B");
+//                if (grid[i][j] == null) row.append("0");
+//
+//            }
+//            System.out.println(row);
+//        }
+//    }
+
+
+    // nie testowane
+    public void saveGrid() throws IOException {
+        ArrayList<String> theBoardToSave = new ArrayList<>();
         for (int j = 0; j < 8; j++) {
-            String row = "";
             for (int i = 0; i < 8; i++) {
-                    if(grid[i][j] instanceof WhiteMan) row += "w";
-                    if(grid[i][j] instanceof BlackMan) row += "b";
-                    if(grid[i][j] == null) row += "0";
+                if (grid[i][j] instanceof WhiteMan) theBoardToSave.add("w");
+                if (grid[i][j] instanceof WhiteKing) theBoardToSave.add("W");
+                if (grid[i][j] instanceof BlackMan) theBoardToSave.add("b");
+                if (grid[i][j] instanceof BlackKing) theBoardToSave.add("B");
+                if (grid[i][j] == null) theBoardToSave.add("0");
 
             }
-            System.out.println(row);
+            theBoardToSave.add("/n");
+        }
+        for (String text : theBoardToSave) {
+            while(text != null){
+            FileOutputStream writer = new FileOutputStream("gameSave.txt", true);
+            if (!text.equals("/n")) {
+                writer.write(text.getBytes());
+            }
+            writer.flush();
+            writer.close();
+            }
         }
     }
+}
+
+
+
 
 //    public static void test(){
 //        grid[0][0] = new Man(0,0,grid);
@@ -42,4 +78,4 @@ public class Board {
 //
 //    }
 
-}
+

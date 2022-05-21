@@ -1,23 +1,18 @@
-0. tura gracza 1
-1. sprawdzenie czy gracz ma jeszcze figury
-2. gracz klika pionek, którym chce się ruszyć
-2. sprawdzanie przymusów bicia dla wszystkich:
-    a) jak są, to zaznaczamy figurę, która musi bić (np pole na żółto):
-        figura się porusza, a figura zbita jest usuwana z planszy
-    b) jak nie ma, to sprawdza, czy pionek może się ruszyć:
-        a) jak tak, to pokazuje możliwe ruchy:
-            a) zwykły ruch, czyli figura zmienia pozycje
-            b) promocja -> pionek jest usuwany i na jego miejsce pojawia się król
-        b) jak nie, to sprawdza czy istnieją pionki, które mogą się liczyć:
-            a) jak nie, to gracz przegrywa
-            b) jeśli istnieją, to nic się nie dzieje (czeka na ruch gracza):
-                - analogia do 2.b)a)
+0. tura gracza 1        [jeszcze niezrobione]
+1. sprawdzenie, czy gracz ma jeszcze figury      [player.figureList]
+2. gracz klika pionek, którym chce się ruszyć       [granice pól do poprawy i ikona króla]
+2. sprawdzanie przymusów bicia dla wszystkich (w pętli dla figur gracza, ale też w pętli dla bicia wielokrotnego):      [man.checkIfTakePossible]
+    a) jak są, to zaznaczamy figurę, która musi bić (np. pole na żółto)     [trzeba zrobić respektowanie przymusu bicia, bo narazie jest tylko sprawdzanie]
+    b) jak nie ma, to sprawdza, czy dany pionek może się w ten sposób ruszyć (czyli o 1 pole do przodu):     [man.checkIfAnyMovePossible]
+     --> nie będzie bicia, bo byłoby wychwycone przez checkIfTakePossible       [man.moveForward]
 
 3. następuje ruch i jego konsekwencje na planszy
 4. nowa tura gracza 2
 
+* zapis i odczyt [jest wstępna wersja zapisu, ale jeszcze jej nie testowałem]
 
-sugerowane przeze mnie zasady:
+
+zasady:
 -plansza 8*8
 -pionki ruszają się tylko do przodu i biją do przodu
 -damka rusza się o jedno pole do przodu albo do tyłu (jak pionek++)

@@ -6,16 +6,16 @@ public class Game {
     private final ArrayList<String> movesHistory = new ArrayList<>();
     private String gameStatus;
 
-   // public static void load()
+    // public static void load()
 
-    // public static void save()
+    // public static void save(){board.saveGrid(gameName);}
 
-    // tworzenie atrybutów aby można było się do następnie odnosić
-    private Board mainBoard;
-    private Player playerWhite;
-    private Player playerBlack;
+    // tworzenie atrybutów, aby można było się do następnie odnosić
+    private final Board mainBoard;
+    private final Player playerWhite;
+    private final Player playerBlack;
 
-    Game(){
+    Game() {
         mainBoard = new Board();
         playerWhite = new WhitePlayer(mainBoard);
         playerBlack = new BlackPlayer(mainBoard);
@@ -24,24 +24,6 @@ public class Game {
     public Board getMainBoard() {
         return mainBoard;
     }
-
-    public void init(){
-        // program testowy
-        // pokazuje w gdy na danym polu jest biały pionek
-        // pokazuje W gdy na danym polu jest biała damka
-        // pokazuje b gdy na danym polu jest czarny pionek
-        // pokazuje B gdy na danym polu jest czarna damka
-        // pokazuje 0 gdy na dane pole jest puste
-        System.out.println("Plansza początkowa:");
-        mainBoard.displayGrid();
-
-//        System.out.println(" ");
-//        System.out.println("Plansza po ruchu:");
-//
-//        //playerWhite.moveMan(0, 5, 1, 4);
-//
-//        mainBoard.displayGrid();
-    }
-
 }
+
 
