@@ -6,3 +6,4 @@ public class BlackKing extends King{
         super(x, y, grid);
     }
 }
+

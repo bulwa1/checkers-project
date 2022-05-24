@@ -3,7 +3,7 @@ package pl.edu.elka.prm2t.checkers;
 public class BlackPlayer extends Player{
     BlackPlayer(Board boardRef){
         super(boardRef);
-//        createNewMen();
+        createNewMen();
     }
 
     @Override

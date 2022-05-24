@@ -69,6 +69,7 @@ public class Screen extends JPanel {
                         if(grid[i][j] instanceof WhiteMan) g.setColor(Color.WHITE);
                         if(grid[i][j] instanceof BlackMan) g.setColor(Color.GRAY);
                         if(grid[i][j] instanceof WhiteKing) g.setColor(Color.GREEN);
+                        if(grid[i][j] instanceof BlackKing) g.setColor(Color.RED);
                         g.fillOval(offSetX + i*fieldSize + 8, offSetY + j*fieldSize + 8, 48, 48);
                     }
             }

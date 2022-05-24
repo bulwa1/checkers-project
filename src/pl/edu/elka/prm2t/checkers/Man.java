@@ -13,10 +13,6 @@ public abstract class Man {
         this.grid = grid;
     }
 
-    public void showPos() {
-        System.out.println(x);
-        System.out.println(y);
-    }
 
     public int getX() {
         return x;
@@ -140,28 +136,5 @@ public abstract class Man {
         }
         return false;
     }
-
-
-    // aktywuje się w trakcie ruchu
-//    protected void becomeKing(int toX, int toY) {
-//        if (grid[x][y] instanceof WhiteMan) {
-//            if (y == 0) {
-//                WhitePlayer.getFigureList().remove(grid[x][y]);
-//                grid[x][y] = null;
-//                WhiteKing promotedMan = new WhiteKing(toX, toY, grid);
-//                grid[toX][toY] = promotedMan;
-//                WhitePlayer.getFigureList().add(promotedMan);
-//            }
-//        }
-//        if (grid[x][y] instanceof BlackMan) {
-//            if (y == 7) {
-//                BlackPlayer.getFigureList().remove(grid[x][y]);
-//                grid[x][y] = null;
-//                BlackKing promotedMan = new BlackKing(toX, toY, grid);
-//                grid[toX][toY] = promotedMan;
-//                BlackPlayer.getFigureList().add(promotedMan);
-//            }
-//        }
-//    }
 }
 

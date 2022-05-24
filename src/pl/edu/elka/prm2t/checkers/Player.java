@@ -23,14 +23,11 @@ public abstract class Player {
         return figureList;
     }
 
-    //pionki powstają w 3 rzędach, asymetrycznie, na co drugim polu
 
     protected void createNewMen(){
-        //
     }
 
     }
-
 
 
 

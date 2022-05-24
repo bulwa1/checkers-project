@@ -28,7 +28,6 @@ public class Game {
     }
 
     public void checkForPlayerPromotion(){
-//        System.out.println(123);
         for (int i = 0; i < 8; i++) {
 //            System.out.println(mainBoard.getGrid()[i][0]);
             if(mainBoard.getGrid()[i][0] instanceof WhiteMan){
@@ -36,6 +35,11 @@ public class Game {
             }
         }
 
+        for (int i = 0; i < 8; i++) {
+            if (mainBoard.getGrid()[i][7] instanceof BlackMan) {
+                playerBlack.promoteMan(i, 7);
+            }
+        }
     }
 
     public Board getMainBoard() {
