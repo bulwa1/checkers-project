@@ -19,6 +19,23 @@ public class Game {
         mainBoard = new Board();
         playerWhite = new WhitePlayer(mainBoard);
         playerBlack = new BlackPlayer(mainBoard);
+
+
+
+        //mainBoard.getGrid()
+
+//        System.out.println(playerWhite);
+    }
+
+    public void checkForPlayerPromotion(){
+//        System.out.println(123);
+        for (int i = 0; i < 8; i++) {
+//            System.out.println(mainBoard.getGrid()[i][0]);
+            if(mainBoard.getGrid()[i][0] instanceof WhiteMan){
+                playerWhite.promoteMan(i, 0);
+            }
+        }
+
     }
 
     public Board getMainBoard() {

@@ -23,6 +23,12 @@ public class Main {
                 final int fieldX = (e.getX() - s.getOffSetX()) / 64;
                 final int fieldY = (e.getY() - s.getOffSetY()) / 64;
 
+
+//                System.out.println();
+
+//                System.out.println(fieldX);
+//                System.out.println(fieldY);
+
                 if(chosenFigure == null){
                     chosenFigure = game.getMainBoard().getGrid()[fieldX][fieldY]; // tutaj trzeba ulatwic dostep
                     if(chosenFigure == null){
@@ -40,8 +46,12 @@ public class Main {
                     chosenFigure = null;
                     s.setChosenField(-1, -1);
                     s.repaint();
+                    game.checkForPlayerPromotion();
                     return;
                 }
+
+
+
 
             }
 

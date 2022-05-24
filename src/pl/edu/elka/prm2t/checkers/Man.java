@@ -18,6 +18,14 @@ public abstract class Man {
         System.out.println(y);
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public boolean checkIfAnyMovePossible(){
         if (grid[x][y] instanceof WhiteMan) {
             if(grid[x+1][y+1] == null || grid[x-1][y+1] == null){
@@ -70,15 +78,16 @@ public abstract class Man {
 
 
     public void moveForward(int toX, int toY) {
-        while(true) {
             if (checkIfMoveForwardPossible(toX, toY)) {
-                becomeKing(toX, toY);
+//                becomeKing(toX, toY);
                 grid[x][y] = null;
                 this.x = toX;
                 this.y = toY;
                 grid[toX][toY] = this;
-                break;
-            }
+
+                System.out.println(checkIfTakePossible());
+
+
 //            else gracz przegrywa; break;
         }
     }
@@ -134,25 +143,25 @@ public abstract class Man {
 
 
     // aktywuje się w trakcie ruchu
-    protected void becomeKing(int toX, int toY) {
-        if (grid[x][y] instanceof WhiteMan) {
-            if (y == 0) {
-                WhitePlayer.getFigureList().remove(grid[x][y]);
-                grid[x][y] = null;
-                WhiteKing promotedMan = new WhiteKing(toX, toY, grid);
-                grid[toX][toY] = promotedMan;
-                WhitePlayer.getFigureList().add(promotedMan);
-            }
-        }
-        if (grid[x][y] instanceof BlackMan) {
-            if (y == 7) {
-                BlackPlayer.getFigureList().remove(grid[x][y]);
-                grid[x][y] = null;
-                BlackKing promotedMan = new BlackKing(toX, toY, grid);
-                grid[toX][toY] = promotedMan;
-                BlackPlayer.getFigureList().add(promotedMan);
-            }
-        }
-    }
+//    protected void becomeKing(int toX, int toY) {
+//        if (grid[x][y] instanceof WhiteMan) {
+//            if (y == 0) {
+//                WhitePlayer.getFigureList().remove(grid[x][y]);
+//                grid[x][y] = null;
+//                WhiteKing promotedMan = new WhiteKing(toX, toY, grid);
+//                grid[toX][toY] = promotedMan;
+//                WhitePlayer.getFigureList().add(promotedMan);
+//            }
+//        }
+//        if (grid[x][y] instanceof BlackMan) {
+//            if (y == 7) {
+//                BlackPlayer.getFigureList().remove(grid[x][y]);
+//                grid[x][y] = null;
+//                BlackKing promotedMan = new BlackKing(toX, toY, grid);
+//                grid[toX][toY] = promotedMan;
+//                BlackPlayer.getFigureList().add(promotedMan);
+//            }
+//        }
+//    }
 }
 

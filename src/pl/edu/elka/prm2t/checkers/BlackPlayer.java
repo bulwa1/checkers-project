@@ -3,7 +3,7 @@ package pl.edu.elka.prm2t.checkers;
 public class BlackPlayer extends Player{
     BlackPlayer(Board boardRef){
         super(boardRef);
-        createNewMen();
+//        createNewMen();
     }
 
     @Override
@@ -20,5 +20,13 @@ public class BlackPlayer extends Player{
             boardRef.getGrid()[k][1] = manToAdd;
             figureList.add(manToAdd);
         }
+    }
+
+    @Override
+    public void promoteMan(int x, int y){
+        super.promoteMan(x, y);
+        BlackKing promotedMan = new BlackKing(x, y, boardRef.getGrid());
+        boardRef.addToGrid(promotedMan);
+        getFigureList().add(promotedMan);
     }
 }

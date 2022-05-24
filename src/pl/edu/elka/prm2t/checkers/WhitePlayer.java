@@ -22,4 +22,12 @@ public class WhitePlayer extends Player{
         }
     }
 
+    @Override
+    public void promoteMan(int x, int y){
+        super.promoteMan(x, y);
+        WhiteKing promotedMan = new WhiteKing(x, y, boardRef.getGrid());
+        boardRef.addToGrid(promotedMan);
+        getFigureList().add(promotedMan);
+    }
+
 }

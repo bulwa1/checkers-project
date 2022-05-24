@@ -3,7 +3,7 @@ package pl.edu.elka.prm2t.checkers;
 import java.util.ArrayList;
 
 public abstract class Player {
-    protected static ArrayList<Man> figureList = new ArrayList<>();
+    protected ArrayList<Man> figureList = new ArrayList<>();
     protected Board boardRef;
 
     Player(Board boardRef){
@@ -14,7 +14,12 @@ public abstract class Player {
         boardRef.getGrid()[fromX][fromY].moveForward(toX, toY);
     }
 
-    public static ArrayList<Man> getFigureList() {
+    public void promoteMan(int x, int y){
+        figureList.remove(boardRef.getGrid()[x][y]);
+        boardRef.getGrid()[x][y] = null;
+    }
+
+    public ArrayList<Man> getFigureList() {
         return figureList;
     }
 

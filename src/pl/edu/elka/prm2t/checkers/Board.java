@@ -28,6 +28,11 @@ public class Board {
 //        }
 //    }
 
+    public void addToGrid(Man figure){
+        int x = figure.getX();
+        int y = figure.getY();
+        grid[x][y] = figure;
+    }
 
     // nie testowane
     public void saveGrid() throws IOException {
