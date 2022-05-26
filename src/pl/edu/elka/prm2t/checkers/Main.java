@@ -43,7 +43,7 @@ public class Main {
                     return;
                 }
                 if(chosenFigure != null){
-                    chosenFigure.moveForward(fieldX, fieldY);
+                    chosenFigure.move(fieldX, fieldY);
                     chosenFigure = null;
                     s.setChosenField(-1, -1);
                     s.repaint();

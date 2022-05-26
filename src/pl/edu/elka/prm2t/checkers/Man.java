@@ -22,18 +22,21 @@ public abstract class Man {
         return y;
     }
 
-    public boolean checkIfAnyMovePossible(){
+    public boolean checkIfAnyMovePossible() {
         if (grid[x][y] instanceof WhiteMan) {
-            if(grid[x+1][y+1] == null || grid[x-1][y+1] == null){
-            return true;}
+            if (grid[x + 1][y - 1] == null || grid[x - 1][y - 1] == null) {
+                return true;
+            }
         }
         if (grid[x][y] instanceof BlackMan) {
-            if(grid[x+1][y-1] == null || grid[x-1][y-1] == null){
-            return true;}
+            if (grid[x + 1][y + 1] == null || grid[x - 1][y + 1] == null) {
+                return true;
+            }
         }
         if (grid[x][y] instanceof King) {
-            if (grid[x + 1][y - 1] == null || grid[x - 1][y - 1] == null || grid[x + 1][y + 1] == null || grid[x - 1][y + 1] == null){
-            return true;}
+            if (grid[x + 1][y - 1] == null || grid[x - 1][y - 1] == null || grid[x + 1][y + 1] == null || grid[x - 1][y + 1] == null) {
+                return true;
+            }
         }
         return false;
     }
@@ -72,11 +75,11 @@ public abstract class Man {
         return xChecker && yChecker && emptyPosition;
     }
 
-    protected void capture(int fromX, int fromY, int toX, int toY){
-        int targetX = (fromX + toX)/2;
-        int targetY = (fromY + toY)/2;
+    protected void capture(int fromX, int fromY, int toX, int toY) {
+        int targetX = (fromX + toX) / 2;
+        int targetY = (fromY + toY) / 2;
 
-        if(grid[targetX][targetY] instanceof Man){
+        if (grid[targetX][targetY] instanceof Man) {
             grid[targetX][targetY] = null;
             // nalezy wprowadzic rowniez update listy
         }
@@ -84,12 +87,9 @@ public abstract class Man {
 
     }
 
-
     public void moveForward(int toX, int toY) {
 
-    // na razie wyłączam zasady aby przetestować bicie
-
-        capture(x, y,toX, toY);
+        // na razie wyłączam zasady aby przetestować bicie
 
         grid[x][y] = null;
         this.x = toX;
@@ -108,52 +108,66 @@ public abstract class Man {
     }
 
     // sprawdza, czy jest jakakolwiek figura do zbicia
-    public boolean checkIfTakePossible() {
-        if (grid[x][y] instanceof WhiteMan) {
-            if (grid[x + 1][y - 1] instanceof BlackMan || grid[x + 1][y - 1] instanceof BlackKing) {
-                if (grid[x + 2][y - 1] == null) return true;
-            }
-            if (grid[x - 1][y - 1] instanceof BlackMan || grid[x - 1][y - 1] instanceof BlackKing) {
-                if (grid[x - 2][y - 1] == null) return true;
-            }
-        }
-        if (grid[x][y] instanceof BlackMan) {
-            if (grid[x + 1][y + 1] instanceof WhiteMan || grid[x + 1][y + 1] instanceof WhiteKing) {
-                if (grid[x + 2][y + 1] == null) return true;
-            }
-            if (grid[x - 1][y + 1] instanceof WhiteMan || grid[x - 1][y + 1] instanceof WhiteKing) {
-                if (grid[x - 2][y + 1] == null) return true;
+    public boolean checkIfTakePossible(int toX, int toY) {
+        int targetX = (x + toX) / 2;
+        int targetY = (y + toY) / 2;
+        if (x - toX == 2 || x - toX == -2) {
+            if (y - toY == 2) {
+                if (grid[x][y] instanceof WhiteMan) {
+                    if (grid[targetX][targetY] instanceof BlackMan || grid[targetX][targetY] instanceof BlackKing) {
+                        if (grid[toX][toY] == null) {
+                            if (y > toY) return true;
+                        }
+                    }
+                }
             }
         }
-        if (grid[x][y] instanceof WhiteKing) {
-            if (grid[x + 1][y - 1] instanceof BlackMan || grid[x + 1][y - 1] instanceof BlackKing) {
-                if (grid[x + 2][y - 1] == null) return true;
-            }
-            if (grid[x - 1][y - 1] instanceof BlackMan || grid[x - 1][y - 1] instanceof BlackKing) {
-                if (grid[x - 2][y - 1] == null) return true;
-            }
-            if (grid[x + 1][y + 1] instanceof BlackMan || grid[x + 1][y + 1] instanceof BlackKing) {
-                if (grid[x + 2][y + 1] == null) return true;
-            }
-            if (grid[x - 1][y + 1] instanceof BlackMan || grid[x - 1][y + 1] instanceof BlackKing) {
-                if (grid[x - 2][y + 1] == null) return true;
+        if (x - toX == 2 || x - toX == -2) {
+            if (y - toY == -2) {
+                if (grid[x][y] instanceof BlackMan) {
+                    if (grid[targetX][targetY] instanceof WhiteMan || grid[targetX][targetY] instanceof WhiteKing) {
+                        if (grid[toX][toY] == null) {
+                            if (y < toY) return true;
+                        }
+                    }
+                }
             }
         }
-        if (grid[x][y] instanceof BlackKing) {
-            if (grid[x + 1][y - 1] instanceof WhiteMan || grid[x + 1][y - 1] instanceof WhiteKing) {
-                if (grid[x + 2][y - 1] == null) return true;
+        if (x - toX == 2 || x - toX == -2) {
+            if (y - toY == 2 || y - toY == -2) {
+                if (grid[x][y] instanceof WhiteKing) {
+                    if (grid[targetX][targetY] instanceof BlackMan || grid[targetX][targetY] instanceof BlackKing) {
+                        if (grid[toX][toY] == null) return true;
+                    }
+                }
             }
-            if (grid[x - 1][y - 1] instanceof WhiteMan || grid[x - 1][y - 1] instanceof WhiteKing) {
-                if (grid[x - 2][y - 1] == null) return true;
-            }
-            if (grid[x + 1][y + 1] instanceof WhiteMan || grid[x + 1][y + 1] instanceof WhiteKing) {
-                if (grid[x + 2][y + 1] == null) return true;
-            }
-            if (grid[x - 1][y + 1] instanceof WhiteMan || grid[x - 1][y + 1] instanceof WhiteKing) {
-                if (grid[x - 2][y + 1] == null) return true;
+            if (grid[x][y] instanceof BlackKing) {
+                if (grid[targetX][targetY] instanceof WhiteMan || grid[targetX][targetY] instanceof WhiteKing) {
+                    if (grid[toX][toY] == null) return true;
+                }
             }
         }
         return false;
     }
+
+    public void move(int toX, int toY) {
+            if (x - toX == -1 || x - toX == 1) {
+                if (y - toY == -1 || y - toY == 1) {
+                    if (checkIfMoveForwardPossible(toX, toY)) {
+                        moveForward(toX, toY);
+                        System.out.println("normal move");
+                    }
+                }
+            }
+            if (checkIfTakePossible(toX, toY)) {
+                capture(x, y, toX, toY);
+                grid[x][y] = null;
+                this.x = toX;
+                this.y = toY;
+                grid[toX][toY] = this;
+                System.out.println("capture");
+            }
+    }
 }
+
 
