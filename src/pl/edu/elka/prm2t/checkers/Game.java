@@ -19,12 +19,6 @@ public class Game {
         mainBoard = new Board();
         playerWhite = new WhitePlayer(mainBoard);
         playerBlack = new BlackPlayer(mainBoard);
-
-
-
-        //mainBoard.getGrid()
-
-//        System.out.println(playerWhite);
     }
 
     public void checkForPlayerPromotion(){

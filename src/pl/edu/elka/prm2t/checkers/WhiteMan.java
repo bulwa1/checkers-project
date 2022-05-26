@@ -6,6 +6,9 @@ public class WhiteMan extends Man{
         super(x, y, grid);
     }
 
+
+
+
 //    @Override
 //    public void move(int toX, int toY){
 //        super.moveForward(toX, toY);

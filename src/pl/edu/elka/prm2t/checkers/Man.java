@@ -5,7 +5,7 @@ package pl.edu.elka.prm2t.checkers;
 public abstract class Man {
     private int x;
     private int y;
-    private final Man[][] grid;
+    protected final Man[][] grid;
 
     Man(int x, int y, Man[][] grid) {
         this.x = x;
@@ -72,20 +72,39 @@ public abstract class Man {
         return xChecker && yChecker && emptyPosition;
     }
 
+    protected void capture(int fromX, int fromY, int toX, int toY){
+        int targetX = (fromX + toX)/2;
+        int targetY = (fromY + toY)/2;
+
+        if(grid[targetX][targetY] instanceof Man){
+            grid[targetX][targetY] = null;
+            // nalezy wprowadzic rowniez update listy
+        }
+
+
+    }
+
 
     public void moveForward(int toX, int toY) {
-            if (checkIfMoveForwardPossible(toX, toY)) {
-//                becomeKing(toX, toY);
-                grid[x][y] = null;
-                this.x = toX;
-                this.y = toY;
-                grid[toX][toY] = this;
 
-                System.out.println(checkIfTakePossible());
+    // na razie wyłączam zasady aby przetestować bicie
+
+        capture(x, y,toX, toY);
+
+        grid[x][y] = null;
+        this.x = toX;
+        this.y = toY;
+        grid[toX][toY] = this;
 
 
-//            else gracz przegrywa; break;
-        }
+//            if (checkIfMoveForwardPossible(toX, toY)) {
+//
+//
+//                System.out.println(checkIfTakePossible());
+//
+//
+////            else gracz przegrywa; break;
+//        }
     }
 
     // sprawdza, czy jest jakakolwiek figura do zbicia
