@@ -20,20 +20,11 @@ public class Main {
         s.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
-
-
                 final int fieldX = (e.getX() - s.getOffSetX()) / 64;
                 final int fieldY = (e.getY() - s.getOffSetY()) / 64;
 
-
-//                System.out.println();
-
-//                System.out.println(fieldX);
-//                System.out.println(fieldY);
-
                 if(chosenFigure == null){
-                    chosenFigure = game.getMainBoard().getGrid()[fieldX][fieldY]; // tutaj trzeba ulatwic dostep
+                    chosenFigure = game.getFigure(fieldX, fieldY);
                     if(game.getTurn() % 2 == 0 && chosenFigure instanceof WhiteMan){
                         System.out.println("Not your turn!");
                         chosenFigure = null;

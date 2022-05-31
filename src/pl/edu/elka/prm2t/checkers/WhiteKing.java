@@ -2,7 +2,7 @@ package pl.edu.elka.prm2t.checkers;
 
 public class WhiteKing extends King {
 
-    WhiteKing(int x, int y, Man[][] grid) {
-        super(x, y, grid);
+    WhiteKing(int x, int y, Board board) {
+        super(x, y, board);
     }
 }

@@ -3,14 +3,16 @@ package pl.edu.elka.prm2t.checkers;
 
 
 public abstract class Man {
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
     protected final Man[][] grid;
+    protected Board board;
 
-    Man(int x, int y, Man[][] grid) {
+    Man(int x, int y, Board board) {
         this.x = x;
         this.y = y;
-        this.grid = grid;
+        this.board = board;
+        this.grid = board.getGrid();
     }
 
 
@@ -80,8 +82,7 @@ public abstract class Man {
         int targetY = (fromY + toY) / 2;
 
         if (grid[targetX][targetY] instanceof Man) {
-            grid[targetX][targetY] = null;
-            // nalezy wprowadzic rowniez update listy
+            board.removeFigure(grid[targetX][targetY]);
         }
 
 
@@ -107,8 +108,16 @@ public abstract class Man {
 //        }
     }
 
+    public boolean checkForTakes(){
+        return false;
+    }
+
     // sprawdza, czy jest jakakolwiek figura do zbicia
     public boolean checkIfTakePossible(int toX, int toY) {
+
+        if(toX < 0 || toX > 7) return false;
+        if(toY < 0 || toY > 7) return false;
+
         int targetX = (x + toX) / 2;
         int targetY = (y + toY) / 2;
         if (x - toX == 2 || x - toX == -2) {

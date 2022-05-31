@@ -10,23 +10,20 @@ public class BlackPlayer extends Player{
     protected void createNewMen(){
         for (int i = 1; i < 8; i+=2) {
             for (int j = 0; j <= 2 ; j+=2) {
-                Man manToAdd = new BlackMan(i, j, boardRef.getGrid());
-                boardRef.getGrid()[i][j] = manToAdd;
-                figureList.add(manToAdd);
+                Man manToAdd = new BlackMan(i, j, boardRef);
+                boardRef.addToGrid(manToAdd);
             }
         }
         for(int k = 0; k<8; k+=2){
-            Man manToAdd = new BlackMan(k, 1, boardRef.getGrid());
-            boardRef.getGrid()[k][1] = manToAdd;
-            figureList.add(manToAdd);
+            Man manToAdd = new BlackMan(k, 1, boardRef);
+            boardRef.addToGrid(manToAdd);
         }
     }
 
     @Override
-    public void promoteMan(int x, int y){
-        super.promoteMan(x, y);
-        BlackKing promotedMan = new BlackKing(x, y, boardRef.getGrid());
+    public void promoteMan(Man manToPromote){
+        BlackKing promotedMan = new BlackKing(manToPromote.getX(), manToPromote.getY(), boardRef);
+        super.promoteMan(manToPromote);
         boardRef.addToGrid(promotedMan);
-        getFigureList().add(promotedMan);
     }
 }

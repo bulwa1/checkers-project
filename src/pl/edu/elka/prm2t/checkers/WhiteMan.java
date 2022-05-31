@@ -2,18 +2,15 @@ package pl.edu.elka.prm2t.checkers;
 
 public class WhiteMan extends Man{
 
-    WhiteMan(int x, int y, Man[][] grid){
-        super(x, y, grid);
+    WhiteMan(int x, int y, Board board){
+        super(x, y, board);
     }
 
+    @Override
+    public boolean checkForTakes(){
+        return checkIfTakePossible(x-2, y-2) || checkIfTakePossible(x+2, y-2);
+    }
 
-
-
-//    @Override
-//    public void move(int toX, int toY){
-//        super.moveForward(toX, toY);
-//        if (toY == 0){
-//            becomeKing(this);
-//        }
-//    }
 }
+
+

@@ -27,20 +27,38 @@ public class Game {
     }
 
     public void nextTurn(){
+        System.out.println("Ruch " + turn);
         turn++;
+
+        if(turn % 2 == 0){
+            System.out.println("Tura czarnych");
+            mainBoard.checkForCapture("black");
+        }
+
+        if(turn % 2 != 0){
+            System.out.println("Tura białych");
+            mainBoard.checkForCapture("white");
+
+        }
+
+
+    }
+
+    public Man getFigure(int x, int y){
+        return mainBoard.getGrid()[x][y];
     }
 
     public void checkForPlayerPromotion(){
         for (int i = 0; i < 8; i++) {
 //            System.out.println(mainBoard.getGrid()[i][0]);
             if(mainBoard.getGrid()[i][0] instanceof WhiteMan){
-                playerWhite.promoteMan(i, 0);
+                playerWhite.promoteMan(mainBoard.getGrid()[i][0]);
             }
         }
 
         for (int i = 0; i < 8; i++) {
             if (mainBoard.getGrid()[i][7] instanceof BlackMan) {
-                playerBlack.promoteMan(i, 7);
+                playerBlack.promoteMan(mainBoard.getGrid()[i][7]);
             }
         }
     }

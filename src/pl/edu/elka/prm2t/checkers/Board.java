@@ -12,27 +12,59 @@ public class Board {
         return grid;
     }
 
+    private ArrayList<WhiteMan> whiteMenList = new ArrayList<>();
 
-//    public void displayGrid() {
-//        for (int j = 0; j < 8; j++) {
-//            StringBuilder row = new StringBuilder();
-//            for (int i = 0; i < 8; i++) {
-//                if (grid[i][j] instanceof WhiteMan) row.append("w");
-//                if (grid[i][j] instanceof WhiteKing) row.append("W");
-//                if (grid[i][j] instanceof BlackMan) row.append("b");
-//                if (grid[i][j] instanceof BlackKing) row.append("B");
-//                if (grid[i][j] == null) row.append("0");
-//
-//            }
-//            System.out.println(row);
-//        }
-//    }
+    private ArrayList<BlackMan> blackMenList = new ArrayList<>();
+
+    public boolean checkForCapture(String color){
+        if(color.equals("white")){
+            whiteMenList.forEach((man) -> {
+                if(man.checkForTakes() == true){
+                    System.out.println("Biały musi bić");
+                    // tutaj należy jeszcze dodać zapisywanie referencji do pionków mających możliwość bicia
+                    // aby mozna bylo ustawic ze mozna ruszac tylko nimi w danej turze (przymus bicia)
+                }
+            });
+        }
+        if(color.equals("black")){
+            blackMenList.forEach((man) -> {
+                if(man.checkForTakes() == true){
+                    System.out.println("Czarny musi bić");
+                }
+            });
+        }
+        return false;
+    }
+
 
     public void addToGrid(Man figure){
         int x = figure.getX();
         int y = figure.getY();
+        if(figure instanceof WhiteMan){
+            whiteMenList.add((WhiteMan) figure);
+        }
+        if(figure instanceof BlackMan){
+            blackMenList.add((BlackMan) figure);
+        }
         grid[x][y] = figure;
     }
+
+    public void removeFigure(Man figure){
+        int x = figure.getX();
+        int y = figure.getY();
+        if(figure instanceof WhiteMan){
+            whiteMenList.remove(figure);
+        }
+        if(figure instanceof BlackMan){
+            blackMenList.remove(figure);
+        }
+        grid[x][y] = null;
+
+        System.out.println(whiteMenList.size());
+        System.out.println(blackMenList.size());
+    }
+
+
 
     // nie testowane
     public void saveGrid() throws IOException {
@@ -64,23 +96,5 @@ public class Board {
 
 
 
-//    public static void test(){
-//        grid[0][0] = new Man(0,0,grid);
-//
-//        //grid[0][0].showPos();
-//
-//        grid[0][0].move(7, 7);
-//
-//
-//        try{
-//            grid[0][0].showPos();
-//
-//
-//        }catch (NullPointerException e){
-//            //
-//        }
-//        grid[7][7].showPos();
-//
-//    }
 
 
