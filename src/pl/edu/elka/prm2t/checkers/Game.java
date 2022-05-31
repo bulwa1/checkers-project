@@ -11,6 +11,7 @@ public class Game {
     // public static void save(){board.saveGrid(gameName);}
 
     // tworzenie atrybutów, aby można było się do następnie odnosić
+    private int turn = 1;
     private final Board mainBoard;
     private final Player playerWhite;
     private final Player playerBlack;
@@ -19,6 +20,14 @@ public class Game {
         mainBoard = new Board();
         playerWhite = new WhitePlayer(mainBoard);
         playerBlack = new BlackPlayer(mainBoard);
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void nextTurn(){
+        turn++;
     }
 
     public void checkForPlayerPromotion(){

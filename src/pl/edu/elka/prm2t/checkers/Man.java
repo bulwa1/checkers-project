@@ -150,12 +150,13 @@ public abstract class Man {
         return false;
     }
 
-    public void move(int toX, int toY) {
+    public boolean move(int toX, int toY) {
             if (x - toX == -1 || x - toX == 1) {
                 if (y - toY == -1 || y - toY == 1) {
                     if (checkIfMoveForwardPossible(toX, toY)) {
                         moveForward(toX, toY);
                         System.out.println("normal move");
+                        return true;
                     }
                 }
             }
@@ -166,7 +167,9 @@ public abstract class Man {
                 this.y = toY;
                 grid[toX][toY] = this;
                 System.out.println("capture");
+                return true;
             }
+            return false;
     }
 }
 

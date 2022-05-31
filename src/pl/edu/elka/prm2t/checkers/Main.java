@@ -21,6 +21,8 @@ public class Main {
             @Override
             public void mouseClicked(MouseEvent e) {
 
+
+
                 final int fieldX = (e.getX() - s.getOffSetX()) / 64;
                 final int fieldY = (e.getY() - s.getOffSetY()) / 64;
 
@@ -32,6 +34,18 @@ public class Main {
 
                 if(chosenFigure == null){
                     chosenFigure = game.getMainBoard().getGrid()[fieldX][fieldY]; // tutaj trzeba ulatwic dostep
+                    if(game.getTurn() % 2 == 0 && chosenFigure instanceof WhiteMan){
+                        System.out.println("Not your turn!");
+                        chosenFigure = null;
+                        return;
+                    }
+
+                    if(game.getTurn() % 2 != 0 && chosenFigure instanceof BlackMan){
+                        System.out.println("Not your turn!");
+                        chosenFigure = null;
+                        return;
+                    }
+
                     if(chosenFigure == null){
                         System.out.println("Empty here");
                         s.setChosenField(-1, -1);
@@ -43,7 +57,8 @@ public class Main {
                     return;
                 }
                 if(chosenFigure != null){
-                    chosenFigure.move(fieldX, fieldY);
+                    boolean stateOfMove = chosenFigure.move(fieldX, fieldY);
+                    if(stateOfMove) game.nextTurn();
                     chosenFigure = null;
                     s.setChosenField(-1, -1);
                     s.repaint();
