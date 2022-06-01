@@ -24,6 +24,8 @@ public abstract class Man {
         return y;
     }
 
+
+    // możliwe że nie działa
     public boolean checkIfAnyMovePossible() {
         if (grid[x][y] instanceof WhiteMan) {
             if (grid[x + 1][y - 1] == null || grid[x - 1][y - 1] == null) {
@@ -90,7 +92,6 @@ public abstract class Man {
 
     public void moveForward(int toX, int toY) {
 
-        // na razie wyłączam zasady aby przetestować bicie
 
         grid[x][y] = null;
         this.x = toX;

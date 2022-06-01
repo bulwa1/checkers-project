@@ -27,16 +27,16 @@ public class Game {
     }
 
     public void nextTurn(){
-        System.out.println("Ruch " + turn);
+        System.out.println("Move " + turn);
         turn++;
 
         if(turn % 2 == 0){
-            System.out.println("Tura czarnych");
+            System.out.println("Black's turn");
             mainBoard.checkForCapture("black");
         }
 
         if(turn % 2 != 0){
-            System.out.println("Tura białych");
+            System.out.println("White's turn");
             mainBoard.checkForCapture("white");
 
         }

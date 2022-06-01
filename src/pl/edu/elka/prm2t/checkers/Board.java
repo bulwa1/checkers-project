@@ -20,7 +20,7 @@ public class Board {
         if(color.equals("white")){
             whiteMenList.forEach((man) -> {
                 if(man.checkForTakes() == true){
-                    System.out.println("Biały musi bić");
+                    System.out.println("White must take");
                     // tutaj należy jeszcze dodać zapisywanie referencji do pionków mających możliwość bicia
                     // aby mozna bylo ustawic ze mozna ruszac tylko nimi w danej turze (przymus bicia)
                 }
@@ -29,7 +29,7 @@ public class Board {
         if(color.equals("black")){
             blackMenList.forEach((man) -> {
                 if(man.checkForTakes() == true){
-                    System.out.println("Czarny musi bić");
+                    System.out.println("Black must take");
                 }
             });
         }
@@ -60,8 +60,8 @@ public class Board {
         }
         grid[x][y] = null;
 
-        System.out.println(whiteMenList.size());
-        System.out.println(blackMenList.size());
+        System.out.println("White's figures: " + whiteMenList.size());
+        System.out.println("Black's figures: " + blackMenList.size());
     }
 
 
