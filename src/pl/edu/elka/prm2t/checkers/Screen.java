@@ -2,6 +2,7 @@ package pl.edu.elka.prm2t.checkers;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Screen extends JPanel {
 
@@ -11,9 +12,15 @@ public class Screen extends JPanel {
     private int selectedFieldY = -1;
     private int offSetX = 44;
     private int offSetY = 24;
+    private int turn = 1;
 
-    Screen(Board boardRef){
+
+    public void setBoardRef(Board boardRef){
         this.boardRef = boardRef;
+    }
+
+    public void nextTurn() {
+        turn++;
     }
 
     public int getOffSetX() {
@@ -34,8 +41,10 @@ public class Screen extends JPanel {
         this.setBackground(Color.WHITE);
 
         drawBoard(g);
+        drawFieldsOfMenWhoMustTakes(g);
         drawAvailableFields(g);
         drawMen(g);
+
 
 
 
@@ -53,6 +62,24 @@ public class Screen extends JPanel {
         }
     }
 
+    private void drawFieldsOfMenWhoMustTakes(Graphics g){
+        g.setColor(Color.RED);
+
+        if(turn % 2 == 0){
+            ArrayList<Man> menWhoMustTakes = boardRef.checkForCapture("black");
+            menWhoMustTakes.forEach((man) -> {
+                g.fillRect(offSetX + man.getX()*fieldSize, offSetY + man.getY()*fieldSize, fieldSize, fieldSize);
+            });
+        }
+
+        if(turn % 2 != 0){
+            ArrayList<Man> menWhoMustTakes = boardRef.checkForCapture("white");
+
+            menWhoMustTakes.forEach((man) -> {
+                g.fillRect(offSetX + man.getX()*fieldSize, offSetY + man.getY()*fieldSize, fieldSize, fieldSize);
+            });
+        }
+    }
 
     private void drawAvailableFields(Graphics g){
         if(selectedFieldY != -1 && selectedFieldX != -1){

@@ -15,11 +15,14 @@ public class Game {
     private final Board mainBoard;
     private final Player playerWhite;
     private final Player playerBlack;
+    private final Screen s;
 
-    Game() {
+    Game(Screen s) {
         mainBoard = new Board();
         playerWhite = new WhitePlayer(mainBoard);
         playerBlack = new BlackPlayer(mainBoard);
+        this.s = s;
+
     }
 
     public int getTurn() {
@@ -29,19 +32,23 @@ public class Game {
     public void nextTurn(){
         System.out.println("Move " + turn);
         turn++;
+        s.nextTurn();
 
         if(turn % 2 == 0){
             System.out.println("Black's turn");
-            mainBoard.checkForCapture("black");
         }
 
         if(turn % 2 != 0){
             System.out.println("White's turn");
-            mainBoard.checkForCapture("white");
-
         }
 
+    }
 
+    public ArrayList<Man> obligatedMen(){
+        String color = "white";
+        if (turn % 2 == 0) color = "black";
+        if (turn % 2 != 0) color = "white";
+        return mainBoard.checkForCapture(color);
     }
 
     public Man getFigure(int x, int y){

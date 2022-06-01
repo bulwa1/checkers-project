@@ -16,24 +16,24 @@ public class Board {
 
     private ArrayList<BlackMan> blackMenList = new ArrayList<>();
 
-    public boolean checkForCapture(String color){
+    public ArrayList<Man> checkForCapture(String color){
+        ArrayList<Man> menWhoMustTake = new ArrayList<>();
+
         if(color.equals("white")){
             whiteMenList.forEach((man) -> {
                 if(man.checkForTakes() == true){
-                    System.out.println("White must take");
-                    // tutaj należy jeszcze dodać zapisywanie referencji do pionków mających możliwość bicia
-                    // aby mozna bylo ustawic ze mozna ruszac tylko nimi w danej turze (przymus bicia)
+                    menWhoMustTake.add(man);
                 }
             });
         }
         if(color.equals("black")){
             blackMenList.forEach((man) -> {
                 if(man.checkForTakes() == true){
-                    System.out.println("Black must take");
+                    menWhoMustTake.add(man);
                 }
             });
         }
-        return false;
+        return menWhoMustTake;
     }
 
 

@@ -4,24 +4,34 @@ package pl.edu.elka.prm2t.checkers;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main {
 
     private static Man chosenFigure;
+    private static ArrayList<Man> obligatedMen = new ArrayList<>();
 
     public static void main(String[] args) {
-        Game game = new Game();
+        Screen s = new Screen();
+        Game game = new Game(s);
+        s.setBoardRef(game.getMainBoard());
 
         // kod potrzebny do wyświetlenia okienka
         JFrame f = new JFrame("Warcaby");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Screen s = new Screen(game.getMainBoard());
+
         f.add(s);
         s.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 final int fieldX = (e.getX() - s.getOffSetX()) / 64;
                 final int fieldY = (e.getY() - s.getOffSetY()) / 64;
+
+
+//                obligatedMen.forEach(man -> {
+//
+//                });
 
                 if(chosenFigure == null){
                     chosenFigure = game.getFigure(fieldX, fieldY);
@@ -37,6 +47,24 @@ public class Main {
                         return;
                     }
 
+
+
+                    if(obligatedMen.size() > 0){
+
+                       AtomicBoolean isLegal = new AtomicBoolean(false);
+
+                        obligatedMen.forEach(man -> {
+                            if(chosenFigure.equals(man)) isLegal.set(true);
+                        });
+
+                        if(!isLegal.get()){
+                            chosenFigure = null;
+                        }
+
+
+                    }
+
+
                     if(chosenFigure == null){
                         System.out.println("Empty here");
                         s.setChosenField(-1, -1);
@@ -49,7 +77,10 @@ public class Main {
                 }
                 if(chosenFigure != null){
                     boolean stateOfMove = chosenFigure.move(fieldX, fieldY);
-                    if(stateOfMove) game.nextTurn();
+                    if(stateOfMove){
+                        game.nextTurn();
+                        obligatedMen = game.obligatedMen();
+                    }
                     chosenFigure = null;
                     s.setChosenField(-1, -1);
                     s.repaint();

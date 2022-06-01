@@ -1,7 +1,5 @@
 package pl.edu.elka.prm2t.checkers;
 
-
-
 public abstract class Man {
     protected int x;
     protected int y;
@@ -91,22 +89,10 @@ public abstract class Man {
     }
 
     public void moveForward(int toX, int toY) {
-
-
         grid[x][y] = null;
         this.x = toX;
         this.y = toY;
         grid[toX][toY] = this;
-
-
-//            if (checkIfMoveForwardPossible(toX, toY)) {
-//
-//
-//                System.out.println(checkIfTakePossible());
-//
-//
-////            else gracz przegrywa; break;
-//        }
     }
 
     public boolean checkForTakes(){
