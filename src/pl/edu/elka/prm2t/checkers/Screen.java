@@ -41,7 +41,7 @@ public class Screen extends JPanel {
         this.setBackground(Color.WHITE);
 
         drawBoard(g);
-        drawFieldsOfMenWhoMustTakes(g);
+        drawFieldsOfManWhoMustTakes(g);
         drawAvailableFields(g);
         drawMen(g);
 
@@ -62,7 +62,7 @@ public class Screen extends JPanel {
         }
     }
 
-    private void drawFieldsOfMenWhoMustTakes(Graphics g){
+    private void drawFieldsOfManWhoMustTakes(Graphics g){
         g.setColor(Color.RED);
 
         if(turn % 2 == 0){

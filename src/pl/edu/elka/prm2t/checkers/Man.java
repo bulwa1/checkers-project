@@ -147,26 +147,30 @@ public abstract class Man {
     }
 
     public boolean move(int toX, int toY) {
-            if (x - toX == -1 || x - toX == 1) {
-                if (y - toY == -1 || y - toY == 1) {
-                    if (checkIfMoveForwardPossible(toX, toY)) {
-                        moveForward(toX, toY);
-                        System.out.println("normal move");
-                        return true;
-                    }
-                }
-            }
-            if (checkIfTakePossible(toX, toY)) {
-                capture(x, y, toX, toY);
-                grid[x][y] = null;
-                this.x = toX;
-                this.y = toY;
-                grid[toX][toY] = this;
-                System.out.println("capture");
+    if(checkForTakes()) {
+        if (checkIfTakePossible(toX, toY)) {
+            capture(x, y, toX, toY);
+            grid[x][y] = null;
+            this.x = toX;
+            this.y = toY;
+            grid[toX][toY] = this;
+            System.out.println("capture");
+            return true;
+        }
+    }
+
+    else if (x - toX == -1 || x - toX == 1) {
+        if (y - toY == -1 || y - toY == 1) {
+            if (checkIfMoveForwardPossible(toX, toY)) {
+                moveForward(toX, toY);
+                System.out.println("normal move");
                 return true;
             }
-            return false;
+            }
+        }
+    return false;
     }
+
 }
 
 

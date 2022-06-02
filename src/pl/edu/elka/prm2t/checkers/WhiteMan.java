@@ -10,7 +10,6 @@ public class WhiteMan extends Man{
     public boolean checkForTakes(){
         return checkIfTakePossible(x-2, y-2) || checkIfTakePossible(x+2, y-2);
     }
-
 }
 
 
