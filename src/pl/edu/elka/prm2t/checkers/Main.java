@@ -35,13 +35,13 @@ public class Main {
 
                 if(chosenFigure == null){
                     chosenFigure = game.getFigure(fieldX, fieldY);
-                    if(game.getTurn() % 2 == 0 && chosenFigure instanceof WhiteMan){
+                    if(game.getTurn() % 2 == 0 && (chosenFigure instanceof WhiteMan ||chosenFigure instanceof WhiteKing)){
                         System.out.println("Not your turn!");
                         chosenFigure = null;
                         return;
                     }
 
-                    if(game.getTurn() % 2 != 0 && chosenFigure instanceof BlackMan){
+                    if(game.getTurn() % 2 != 0 && (chosenFigure instanceof BlackMan|| chosenFigure instanceof BlackKing)){
                         System.out.println("Not your turn!");
                         chosenFigure = null;
                         return;

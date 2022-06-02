@@ -12,9 +12,9 @@ public class Board {
         return grid;
     }
 
-    private ArrayList<WhiteMan> whiteMenList = new ArrayList<>();
+    private ArrayList<Man> whiteMenList = new ArrayList<>();
 
-    private ArrayList<BlackMan> blackMenList = new ArrayList<>();
+    private ArrayList<Man> blackMenList = new ArrayList<>();
 
     public ArrayList<Man> checkForCapture(String color){
         ArrayList<Man> menWhoMustTake = new ArrayList<>();
@@ -40,11 +40,11 @@ public class Board {
     public void addToGrid(Man figure){
         int x = figure.getX();
         int y = figure.getY();
-        if(figure instanceof WhiteMan){
-            whiteMenList.add((WhiteMan) figure);
+        if(figure instanceof WhiteMan || figure instanceof WhiteKing){
+            whiteMenList.add(figure);
         }
-        if(figure instanceof BlackMan){
-            blackMenList.add((BlackMan) figure);
+        if(figure instanceof BlackMan || figure instanceof BlackKing){
+            blackMenList.add(figure);
         }
         grid[x][y] = figure;
     }
