@@ -15,6 +15,21 @@ public class Screen extends JPanel {
     private int turn = 1;
 
 
+    public Screen(){
+        JButton button = new JButton("Open");
+
+        button.setVisible(true);
+        button.setBounds(300,200,100,150);
+        this.add(button);
+
+
+        JToolBar toolBar = new JToolBar("Open");
+        toolBar.setVisible(true);
+        this.add(toolBar);
+
+
+    }
+
     public void setBoardRef(Board boardRef){
         this.boardRef = boardRef;
     }
@@ -36,6 +51,7 @@ public class Screen extends JPanel {
         selectedFieldY = fieldY;
     }
 
+
     public void paint(Graphics g){
         super.paintComponent(g);
         this.setBackground(Color.WHITE);
@@ -45,10 +61,8 @@ public class Screen extends JPanel {
         drawAvailableFields(g);
         drawMen(g);
 
-
-
-
     }
+
 
     private void drawBoard(Graphics g){
         // szalony algorytm rysowania planszy
@@ -107,4 +121,5 @@ public class Screen extends JPanel {
             }
         }
     }
+
 }

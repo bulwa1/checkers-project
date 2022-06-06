@@ -2,6 +2,7 @@ package pl.edu.elka.prm2t.checkers;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -20,6 +21,19 @@ public class Main {
         // kod potrzebny do wyświetlenia okienka
         JFrame f = new JFrame("Warcaby");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+//        JButton button = new JButton("open");
+//        button.setBounds(600,200,100,200);
+//        button.setVisible(true);
+//        f.getContentPane().add(button);
+
+        JToolBar toolBar = new JToolBar("Options");
+        JButton openBtn = new JButton("OPEN");
+        toolBar.add(openBtn);
+        f.getContentPane().add(toolBar);
+
+
+
 
         f.add(s);
         s.addMouseListener(new MouseListener() {
@@ -60,7 +74,6 @@ public class Main {
                         if(!isLegal.get()){
                             chosenFigure = null;
                         }
-
 
                     }
 
@@ -113,7 +126,7 @@ public class Main {
                 //
             }
         });
-        f.setSize(600, 600);
+        f.setSize(1000, 1000);
         f.setVisible(true);
     }
 }

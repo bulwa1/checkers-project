@@ -84,9 +84,8 @@ public abstract class Man {
         if (grid[targetX][targetY] instanceof Man) {
             board.removeFigure(grid[targetX][targetY]);
         }
-
-
     }
+
 
     public void moveForward(int toX, int toY) {
         grid[x][y] = null;
