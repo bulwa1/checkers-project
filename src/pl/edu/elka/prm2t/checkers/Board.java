@@ -58,6 +58,12 @@ public class Board {
         if(figure instanceof BlackMan){
             blackMenList.remove(figure);
         }
+        if(figure instanceof WhiteKing){
+            whiteMenList.remove(figure);
+        }
+        if(figure instanceof BlackKing){
+            blackMenList.remove(figure);
+        }
         grid[x][y] = null;
 
         System.out.println("White's figures: " + whiteMenList.size());

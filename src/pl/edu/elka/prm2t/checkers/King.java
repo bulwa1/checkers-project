@@ -7,10 +7,10 @@ public abstract class King extends Man {
         //super(x, y);
     }
 
-//    @Override
-//    public boolean checkIfTakePossible(int toX, int toY) {
-//        return true;
-//    }
+    @Override
+    public boolean checkIfTakePossible(int toX, int toY) {
+        return false;
+    }
 
     @Override
     public boolean checkIfMoveForwardPossible(int toX, int toY) {
