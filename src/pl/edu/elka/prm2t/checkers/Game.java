@@ -29,8 +29,32 @@ public class Game {
         return turn;
     }
 
-    public void nextTurn(){
+    public void nextTurn(int fromX, int fromY, int toX, int toY){
+//        mainBoard.getGrid()
+
+        String mvMsg = "";
+
+        if(turn % 2 == 0){
+            mvMsg = "black;"+fromX+";"+fromY+";"+toX+";"+toY;
+        }
+
+        if(turn % 2 != 0){
+            mvMsg = "white;"+fromX+";"+fromY+";"+toX+";"+toY;
+        }
+
+        System.out.println(mvMsg);
+
         System.out.println("Move " + turn);
+        if(turn % 2 == 0 && mainBoard.checkForCapture("black").size() > 0){
+            System.out.println("PONOWNE BICIE CZARNYCH");
+            return;
+        }
+
+        if(turn % 2 != 0 && mainBoard.checkForCapture("white").size() > 0){
+            System.out.println("PONOWNE BICIE BIAŁYCH");
+            return;
+        }
+
         turn++;
         s.nextTurn();
 

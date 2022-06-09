@@ -89,9 +89,11 @@ public class Main {
                     return;
                 }
                 if(chosenFigure != null){
+                    int fromX = chosenFigure.getX();
+                    int fromY = chosenFigure.getY();
                     boolean stateOfMove = chosenFigure.move(fieldX, fieldY);
                     if(stateOfMove){
-                        game.nextTurn();
+                        game.nextTurn(fromX, fromY, fieldX, fieldY);
                         obligatedMen = game.obligatedMen();
                     }
                     chosenFigure = null;

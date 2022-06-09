@@ -12,8 +12,6 @@ public abstract class Man {
         this.board = board;
         this.grid = board.getGrid();
     }
-
-
     public int getX() {
         return x;
     }
