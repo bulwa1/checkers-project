@@ -76,6 +76,9 @@ public abstract class Man {
         }
         return xChecker && yChecker && emptyPosition;
     }
+//    return false;
+//    }
+
 
     protected void capture(int fromX, int fromY, int toX, int toY) {
         int targetX = (fromX + toX) / 2;
@@ -100,6 +103,48 @@ public abstract class Man {
 
     // sprawdza czy dane bicie jest możliwe
     public boolean checkIfTakePossible(int toX, int toY) {
+        if(toX < 0 || toX > 7) return false;
+        if(toY < 0 || toY > 7) return false;
+
+        int targetX = (x + toX) / 2;
+        int targetY = (y + toY) / 2;
+        if (x - toX == 2 || x - toX == -2) {
+            if (y - toY == 2) {
+                if (grid[x][y] instanceof WhiteMan) {
+                    if (grid[targetX][targetY] instanceof BlackMan || grid[targetX][targetY] instanceof BlackKing) {
+                        if (grid[toX][toY] == null) {
+                            if (y > toY) return true;
+                        }
+                    }
+                }
+            }
+        }
+        if (x - toX == 2 || x - toX == -2) {
+            if (y - toY == -2) {
+                if (grid[x][y] instanceof BlackMan) {
+                    if (grid[targetX][targetY] instanceof WhiteMan || grid[targetX][targetY] instanceof WhiteKing) {
+                        if (grid[toX][toY] == null) {
+                            if (y < toY) return true;
+                        }
+                    }
+                }
+            }
+        }
+        if (x - toX == 2 || x - toX == -2) {
+            if (y - toY == 2 || y - toY == -2) {
+                if (grid[x][y] instanceof WhiteKing) {
+                    if (grid[targetX][targetY] instanceof BlackMan || grid[targetX][targetY] instanceof BlackKing) {
+                        if (grid[toX][toY] == null) return true;
+                    }
+                }
+            }
+            if (grid[x][y] instanceof BlackKing) {
+                if (grid[targetX][targetY] instanceof WhiteMan || grid[targetX][targetY] instanceof WhiteKing) {
+                    if (grid[toX][toY] == null) return true;
+                }
+            }
+        }
+
         return false;
     }
 

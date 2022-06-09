@@ -7,25 +7,44 @@ public class BlackMan extends Man{
     public boolean checkForTakes(){
         return checkIfTakePossible(x-2, y+2) || checkIfTakePossible(x+2, y+2);
     }
-    @Override public boolean checkIfTakePossible(int toX, int toY) {
+//    @Override public boolean checkIfTakePossible(int toX, int toY) {
+//
+//        if (toX < 0 || toX > 7) return false;
+//        if (toY < 0 || toY > 7) return false;
+//        int targetX = (x + toX) / 2;
+//        int targetY = (y + toY) / 2;
+//
+//        if (x - toX == 2 || x - toX == -2) {
+//            if (y - toY == -2) {
+//                if (grid[x][y] instanceof BlackMan) {
+//                    if (grid[targetX][targetY] instanceof WhiteMan || grid[targetX][targetY] instanceof WhiteKing) {
+//                        if (grid[toX][toY] == null) {
+//                            if (y < toY) return true;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return false;
+//    }
 
-        if (toX < 0 || toX > 7) return false;
-        if (toY < 0 || toY > 7) return false;
-        int targetX = (x + toX) / 2;
-        int targetY = (y + toY) / 2;
+//    @Override
+//    public boolean checkIfMoveForwardPossible(int toX, int toY){
+//        boolean xChecker = false;
+//        boolean yChecker = false;
+//        boolean emptyPosition = false;
+//
+//            if (x - toX == 1 || x - toX == -1) {
+//                xChecker = true;
+//            }
+//            if (y - toY == -1) {
+//                yChecker = true;
+//            }
+//            if (grid[toX][toY] == null) {
+//                emptyPosition = true;
+//        }
+//        return xChecker && yChecker && emptyPosition;
+//    }
 
-        if (x - toX == 2 || x - toX == -2) {
-            if (y - toY == -2) {
-                if (grid[x][y] instanceof BlackMan) {
-                    if (grid[targetX][targetY] instanceof WhiteMan || grid[targetX][targetY] instanceof WhiteKing) {
-                        if (grid[toX][toY] == null) {
-                            if (y < toY) return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
 }
 
