@@ -43,41 +43,43 @@ public abstract class Man {
         return false;
     }
 
+
+    // hermetyzacja udana
     public boolean checkIfMoveForwardPossible(int toX, int toY) {
-        boolean xChecker = false;
-        boolean yChecker = false;
-        boolean emptyPosition = false;
-        if (grid[x][y] instanceof WhiteMan) {
-            if (x - toX == 1 || x - toX == -1) {
-                xChecker = true;
-            }
-            if (y - toY == 1) {
-                yChecker = true;
-            }
-        }
-        if (grid[x][y] instanceof BlackMan) {
-            if (x - toX == 1 || x - toX == -1) {
-                xChecker = true;
-            }
-            if (y - toY == -1) {
-                yChecker = true;
-            }
-        }
-        if (grid[x][y] instanceof King) {
-            if (x - toX == 1 || x - toX == -1) {
-                xChecker = true;
-            }
-            if (y - toY == -1 || y - toY == 1) {
-                yChecker = true;
-            }
-        }
-        if (grid[toX][toY] == null) {
-            emptyPosition = true;
-        }
-        return xChecker && yChecker && emptyPosition;
-    }
-//    return false;
+//        boolean xChecker = false;
+//        boolean yChecker = false;
+//        boolean emptyPosition = false;
+//        if (grid[x][y] instanceof WhiteMan) {
+//            if (x - toX == 1 || x - toX == -1) {
+//                xChecker = true;
+//            }
+//            if (y - toY == 1) {
+//                yChecker = true;
+//            }
+//        }
+//        if (grid[x][y] instanceof BlackMan) {
+//            if (x - toX == 1 || x - toX == -1) {
+//                xChecker = true;
+//            }
+//            if (y - toY == -1) {
+//                yChecker = true;
+//            }
+//        }
+//        if (grid[x][y] instanceof King) {
+//            if (x - toX == 1 || x - toX == -1) {
+//                xChecker = true;
+//            }
+//            if (y - toY == -1 || y - toY == 1) {
+//                yChecker = true;
+//            }
+//        }
+//        if (grid[toX][toY] == null) {
+//            emptyPosition = true;
+//        }
+//        return xChecker && yChecker && emptyPosition;
 //    }
+    return false;
+    }
 
 
     protected void capture(int fromX, int fromY, int toX, int toY) {

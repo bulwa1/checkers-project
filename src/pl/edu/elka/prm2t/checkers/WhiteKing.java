@@ -27,4 +27,10 @@ public class WhiteKing extends King {
 //            }
 //        return false;
 //    }
+    @Override
+    public boolean checkIfMoveForwardPossible(int toX, int toY) {
+        return super.checkIfMoveForwardPossible(toX, toY);
+    }
+
+
 }
