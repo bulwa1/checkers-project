@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Game {
     private final ArrayList<String> movesHistory = new ArrayList<>();
     private String gameStatus;
-
     // public static void load()
 
     // public static void save(){board.saveGrid(gameName);}
@@ -31,20 +30,20 @@ public class Game {
 
     public void nextTurn(int fromX, int fromY, int toX, int toY){
 //        mainBoard.getGrid()
-
         String mvMsg = "";
-
         if(turn % 2 == 0){
-            mvMsg = "black;"+fromX+";"+fromY+";"+toX+";"+toY;
+            mvMsg = "-> black from ["+ fromX +","+ fromY +"] to ["+ toX +","+ toY +"]";
         }
 
         if(turn % 2 != 0){
-            mvMsg = "white;"+fromX+";"+fromY+";"+toX+";"+toY;
+            mvMsg = "-> white from ["+ fromX +","+ fromY +"] to ["+ toX +","+ toY +"]";
         }
 
-        System.out.println(mvMsg);
+        String playerMove = "Move " + turn + mvMsg;
+        movesHistory.add(playerMove);
+        System.out.println(movesHistory.get(turn - 1));
 
-        System.out.println("Move " + turn);
+
         if(turn % 2 == 0 && mainBoard.checkForCapture("black").size() > 0){
             System.out.println("PONOWNE BICIE CZARNYCH");
             return;
