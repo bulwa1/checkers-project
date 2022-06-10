@@ -1,5 +1,6 @@
 package pl.edu.elka.prm2t.checkers;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class Screen extends JPanel {
     }
 
 
+
     public void paint(Graphics g){
         super.paintComponent(g);
         this.setBackground(Color.WHITE);
@@ -58,6 +60,8 @@ public class Screen extends JPanel {
         for (int  i= 1;  i<= 64; i+=2) {
             g.fillRect(offSetX + (i - (i/8)*8 - (i/8)%2)*fieldSize, offSetY + (i/8) * fieldSize, fieldSize, fieldSize);
         }
+
+
     }
 
     private void drawFieldsOfManWhoMustTakes(Graphics g){
@@ -105,5 +109,7 @@ public class Screen extends JPanel {
             }
         }
     }
+
+
 
 }

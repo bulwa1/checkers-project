@@ -1,6 +1,5 @@
 package pl.edu.elka.prm2t.checkers;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -18,14 +17,24 @@ public class Main {
         Game game = new Game(s);
         s.setBoardRef(game.getMainBoard());
 
+
+
         // kod potrzebny do wyświetlenia okienka
         JFrame f = new JFrame("Warcaby");
+
+        f.setSize(600, 650);
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        f.setLocation(dimension.width/2-f.getSize().width/2,dimension.height/2-f.getSize().height/2);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
 
         // menu do zapisu i odczytu
-
-        MenuOptionsBar mOB = new MenuOptionsBar();
+        MenuOptionsBar mOB = new MenuOptionsBar(s);
         f.setJMenuBar(mOB);
+
+
+
 
 
         f.add(s);
@@ -118,8 +127,12 @@ public class Main {
                 //
             }
         });
-        f.setSize(600, 650);
         f.setVisible(true);
     }
+
+
+
+
+
 }
 
