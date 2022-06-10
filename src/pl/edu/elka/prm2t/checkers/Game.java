@@ -43,15 +43,16 @@ public class Game {
         movesHistory.add(playerMove);
         System.out.println(movesHistory.get(turn - 1));
 
+        if(fromY - toY == 2 || fromY - toY == -2){
+            if(turn % 2 == 0 && mainBoard.checkForCapture("black").size() > 0){
+                System.out.println("BLACK TAKES AGAIN");
+                return;
+            }
 
-        if(turn % 2 == 0 && mainBoard.checkForCapture("black").size() > 0){
-            System.out.println("PONOWNE BICIE CZARNYCH");
-            return;
-        }
-
-        if(turn % 2 != 0 && mainBoard.checkForCapture("white").size() > 0){
-            System.out.println("PONOWNE BICIE BIAŁYCH");
-            return;
+            if(turn % 2 != 0 && mainBoard.checkForCapture("white").size() > 0){
+                System.out.println("WHITE TAKES AGAIN");
+                return;
+            }
         }
 
         turn++;
