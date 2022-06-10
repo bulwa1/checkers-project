@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 // to do: zrobić, żeby podczas bicia wielokrotnego pionek mógł się zmienić w króla
 // żeby w biciu wielokrotnym można było bić tylko jednym pionkiem
+// dobracować wczytywanie/zapisywanie
+// zrobić historie i cofanie
+// ogarnąć funkcje to wydruku
 
 
 public class Game {

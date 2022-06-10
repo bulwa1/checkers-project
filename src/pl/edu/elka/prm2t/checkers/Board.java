@@ -79,7 +79,6 @@ public class Board {
     }
 
 
-
     // nie testowane
     public void saveGrid() throws IOException {
         ArrayList<String> theBoardToSave = new ArrayList<>();
