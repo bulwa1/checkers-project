@@ -15,17 +15,23 @@ public class Screen extends JPanel {
     private int turn = 1;
 
 
+
+
     public Screen(){
-        JButton button = new JButton("Open");
 
-        button.setVisible(true);
-        button.setBounds(300,200,100,150);
-        this.add(button);
+//        JToolBar toolBar = new JToolBar();
+//
+//
+//        s.add(toolBar, BorderLayout.PAGE_START);
+//
+//        toolBar.addSeparator(new Dimension(150, 0));
+//
+//        JButton openB = new JButton("OPEN");
+//        JButton saveB = new JButton("SAVE");
+//        toolBar.add(openB, saveB);
 
 
-        JToolBar toolBar = new JToolBar("Open");
-        toolBar.setVisible(true);
-        this.add(toolBar);
+
 
 
     }
