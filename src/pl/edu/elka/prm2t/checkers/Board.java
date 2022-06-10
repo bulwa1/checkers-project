@@ -12,9 +12,17 @@ public class Board {
         return grid;
     }
 
-    private ArrayList<Man> whiteMenList = new ArrayList<>();
+    public ArrayList<Man> whiteMenList = new ArrayList<>();
 
-    private ArrayList<Man> blackMenList = new ArrayList<>();
+    public ArrayList<Man> blackMenList = new ArrayList<>();
+
+    public ArrayList<Man> getWhiteMenList() {
+        return whiteMenList;
+    }
+
+    public ArrayList<Man> getBlackMenList() {
+        return blackMenList;
+    }
 
     public ArrayList<Man> checkForCapture(String color){
         ArrayList<Man> menWhoMustTake = new ArrayList<>();

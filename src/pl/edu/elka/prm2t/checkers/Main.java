@@ -3,11 +3,8 @@ package pl.edu.elka.prm2t.checkers;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.font.TextHitInfo;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -21,17 +18,19 @@ public class Main {
         Game game = new Game(s);
         s.setBoardRef(game.getMainBoard());
 
-
         // kod potrzebny do wyświetlenia okienka
         JFrame f = new JFrame("Warcaby");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // menu do zapisu i odczytu
+//        JButton button = new JButton("open");
+//        button.setBounds(600,200,100,200);
+//        button.setVisible(true);
+//        f.getContentPane().add(button);
 
-        MenuOptionsBar mOB = new MenuOptionsBar();
-        f.setJMenuBar(mOB);
-
-
+        JToolBar toolBar = new JToolBar("Options");
+        JButton openBtn = new JButton("OPEN");
+        toolBar.add(openBtn);
+        f.getContentPane().add(toolBar);
 
 
 
@@ -43,20 +42,31 @@ public class Main {
                 final int fieldX = (e.getX() - s.getOffSetX()) / 64;
                 final int fieldY = (e.getY() - s.getOffSetY()) / 64;
 
+
+//                obligatedMen.forEach(man -> {
+//
+//                });
+
                 if(chosenFigure == null){
                     chosenFigure = game.getFigure(fieldX, fieldY);
                     if(game.getTurn() % 2 == 0 && (chosenFigure instanceof WhiteMan ||chosenFigure instanceof WhiteKing)){
                         System.out.println("Not your turn!");
                         chosenFigure = null;
-                        return;}
+                        return;
+                    }
 
                     if(game.getTurn() % 2 != 0 && (chosenFigure instanceof BlackMan|| chosenFigure instanceof BlackKing)){
                         System.out.println("Not your turn!");
                         chosenFigure = null;
-                        return;}
+                        return;
+                    }
+
+
 
                     if(obligatedMen.size() > 0){
+
                        AtomicBoolean isLegal = new AtomicBoolean(false);
+
                         obligatedMen.forEach(man -> {
                             if(chosenFigure.equals(man)) isLegal.set(true);
                         });
@@ -64,7 +74,10 @@ public class Main {
                         if(!isLegal.get()){
                             chosenFigure = null;
                         }
+
                     }
+
+
                     if(chosenFigure == null){
                         System.out.println("Empty here");
                         s.setChosenField(-1, -1);
@@ -92,6 +105,7 @@ public class Main {
 
 
 
+
             }
 
             @Override
@@ -114,11 +128,8 @@ public class Main {
                 //
             }
         });
-        f.setSize(600, 650);
+        f.setSize(1000, 1000);
         f.setVisible(true);
     }
-
-
 }
-
 

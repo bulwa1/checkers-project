@@ -24,6 +24,25 @@ public class Game {
 
     }
 
+    public String getGameStatus() {
+        checkGameStatus();
+        return gameStatus;
+    }
+
+    public void checkGameStatus(){
+        ArrayList<Man> whiteFigures = mainBoard.getWhiteMenList();
+        ArrayList<Man> blackFigures = mainBoard.getBlackMenList();
+        if(whiteFigures.isEmpty()){
+            gameStatus = "Black won";
+        }
+        if(blackFigures.isEmpty()){
+            gameStatus = "White won";
+        }
+        else
+            gameStatus = "Game in progress";
+
+    }
+
     public int getTurn() {
         return turn;
     }
