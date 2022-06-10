@@ -9,15 +9,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 
+
 public class MenuOptionsBar extends JMenuBar implements ActionListener {
 
 
     private JMenu fileTab;
     private JMenuItem open;
     private JMenuItem save;
+    private JButton printButton;
     private JButton restart;
     private JButton undo;
-    private JButton printButton;
     private Screen screen;
 
     public MenuOptionsBar(Screen screen) {
@@ -33,6 +34,12 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
         fileTab.add(save);
         save.addActionListener(this);
 
+        this.add(Box.createHorizontalGlue());
+
+        printButton = new JButton("Print");
+        this.add(printButton);
+        printButton.addActionListener(this);
+
         restart = new JButton("Restart");
         this.add(restart);
         restart.addActionListener(this);
@@ -41,9 +48,8 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
         this.add(undo);
         undo.addActionListener(this);
 
-        printButton = new JButton("Print");
-        this.add(printButton);
-        printButton.addActionListener(this);
+
+
     }
 
     @Override
@@ -56,12 +62,15 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
             if (response == JFileChooser.APPROVE_OPTION) {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 System.out.println(file);
+
+                //TODO potrzebujemy zczytywacza danych wybranych z komputera
             }
         }
 
         if (e.getSource() == save) {
-            System.out.println("Save");
-            // potrzebna metoda na ten save
+            System.out.println("Save!");
+
+            //TODO potrzebujemy tutaj metody na save w boardzie lub gamie
 
 //            Board boardToSave = new Board();
 //            try {
@@ -70,37 +79,37 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
 //                ex.printStackTrace();
 //            }
 
-
         }
 
         if (e.getSource() == restart) {
-            System.out.println("witam");
+            System.out.println("Restart!");
         }
 
         if (e.getSource() == undo) {
-            System.out.println("undo");
+            System.out.println("Undo!");
         }
 
         if (e.getSource() == printButton) {
-
             try {
 
                 System.out.println("Shot!");
-                Dimension sizeOfShot = screen.getSize();
-                System.out.println(sizeOfShot);
+//                Dimension sizeOfShot = screen.getSize();
+//                System.out.println(sizeOfShot);
+//                Rectangle boundsOfShot = screen.getBounds();
+//                System.out.println(boundsOfShot);
 
-                Rectangle boundsOfShot = screen.getBounds();
-                System.out.println(boundsOfShot);
-
-                Rectangle screenShot = new Rectangle();
+                //TYLKO DLA NIE RUSZAJĄCEJ SIĘ TABLICY
+                Rectangle screenShot = new Rectangle(495,165,555,555);
                 Robot robot = new Robot();
                 BufferedImage shot = robot.createScreenCapture(screenShot);
-                File savedShot = new File("screenshot.png");
+                File savedShot = new File("screenshot12q.png");
                 ImageIO.write(shot, "png", savedShot);
 
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
+
+
 
         }
     }

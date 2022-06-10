@@ -17,25 +17,18 @@ public class Main {
         Game game = new Game(s);
         s.setBoardRef(game.getMainBoard());
 
-
-
-        // kod potrzebny do wyświetlenia okienka
+        //KOD WYŚWIETLAJĄCY OKNO
         JFrame f = new JFrame("Warcaby");
-
         f.setSize(600, 650);
+
+        //OKNO FRAME GENERUJE SIĘ PO ŚRODKU
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         f.setLocation(dimension.width/2-f.getSize().width/2,dimension.height/2-f.getSize().height/2);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
-
-        // menu do zapisu i odczytu
+        // MENU --> MenuOptionsBar
         MenuOptionsBar mOB = new MenuOptionsBar(s);
         f.setJMenuBar(mOB);
-
-
-
-
 
         f.add(s);
         s.addMouseListener(new MouseListener() {
@@ -43,8 +36,6 @@ public class Main {
             public void mouseClicked(MouseEvent e) {
                 final int fieldX = (e.getX() - s.getOffSetX()) / 64;
                 final int fieldY = (e.getY() - s.getOffSetY()) / 64;
-
-
 
                 if(chosenFigure == null){
                     chosenFigure = game.getFigure(fieldX, fieldY);
@@ -60,8 +51,6 @@ public class Main {
                         return;
                     }
 
-
-
                     if(obligatedMen.size() > 0){
 
                        AtomicBoolean isLegal = new AtomicBoolean(false);
@@ -69,13 +58,10 @@ public class Main {
                         obligatedMen.forEach(man -> {
                             if(chosenFigure.equals(man)) isLegal.set(true);
                         });
-
                         if(!isLegal.get()){
                             chosenFigure = null;
                         }
-
                     }
-
 
                     if(chosenFigure == null){
                         System.out.println("Empty here");
@@ -101,27 +87,20 @@ public class Main {
                     game.checkForPlayerPromotion();
                     return;
                 }
-
-
-
-
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
                 //
             }
-
             @Override
             public void mouseReleased(MouseEvent e) {
                 //
             }
-
             @Override
             public void mouseEntered(MouseEvent e) {
                 //
             }
-
             @Override
             public void mouseExited(MouseEvent e) {
                 //
