@@ -22,17 +22,10 @@ public class Main {
         JFrame f = new JFrame("Warcaby");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-//        JButton button = new JButton("open");
-//        button.setBounds(600,200,100,200);
-//        button.setVisible(true);
-//        f.getContentPane().add(button);
+        // menu do zapisu i odczytu
 
-        JToolBar toolBar = new JToolBar("Options");
-        JButton openBtn = new JButton("OPEN");
-        toolBar.add(openBtn);
-        f.getContentPane().add(toolBar);
-
-
+        MenuOptionsBar mOB = new MenuOptionsBar();
+        f.setJMenuBar(mOB);
 
 
         f.add(s);
@@ -43,9 +36,6 @@ public class Main {
                 final int fieldY = (e.getY() - s.getOffSetY()) / 64;
 
 
-//                obligatedMen.forEach(man -> {
-//
-//                });
 
                 if(chosenFigure == null){
                     chosenFigure = game.getFigure(fieldX, fieldY);
@@ -128,7 +118,7 @@ public class Main {
                 //
             }
         });
-        f.setSize(1000, 1000);
+        f.setSize(600, 650);
         f.setVisible(true);
     }
 }

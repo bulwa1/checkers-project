@@ -2,6 +2,12 @@ package pl.edu.elka.prm2t.checkers;
 
 import java.util.ArrayList;
 
+
+
+// to do: zrobić, żeby podczas bicia wielokrotnego pionek mógł się zmienić w króla
+// żeby w biciu wielokrotnym można było bić tylko jednym pionkiem
+
+
 public class Game {
     private final ArrayList<String> movesHistory = new ArrayList<>();
     private String gameStatus;

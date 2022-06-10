@@ -14,28 +14,6 @@ public class Screen extends JPanel {
     private int offSetY = 24;
     private int turn = 1;
 
-
-
-
-    public Screen(){
-
-//        JToolBar toolBar = new JToolBar();
-//
-//
-//        s.add(toolBar, BorderLayout.PAGE_START);
-//
-//        toolBar.addSeparator(new Dimension(150, 0));
-//
-//        JButton openB = new JButton("OPEN");
-//        JButton saveB = new JButton("SAVE");
-//        toolBar.add(openB, saveB);
-
-
-
-
-
-    }
-
     public void setBoardRef(Board boardRef){
         this.boardRef = boardRef;
     }
