@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.Locale;
 
 
@@ -92,25 +93,10 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
         }
 
         if (e.getSource() == printButton) {
-//            try {
-//
-//                System.out.println("Shot!");
-//
-//                //TYLKO DLA ZABLOKOWANEJ TABLICY
-//                Rectangle screenShot = new Rectangle(495,165,555,555);
-//                Robot robot = new Robot();
-//                BufferedImage shot = robot.createScreenCapture(screenShot);
-//                File savedShot = new File("screenshot.png");
-//                ImageIO.write(shot, "png", savedShot);
-//
-//            } catch (Exception exception) {
-//                exception.printStackTrace();
-//
-
-            //FIXME to jest zdecydowanie lepsza metoda na screenshota lecz pokazuje się czarny screen
 
             try {
-                String pngSave = JOptionPane.showInputDialog(null, "Save file", null, 1);
+                JFileChooser fileChooser = new JFileChooser();
+                String pngSave = whereToSave(fileChooser);
 
                 if (!pngSave.toLowerCase().endsWith(".png")){
                     JOptionPane.showMessageDialog(null,"Error file must be in png format!",null,1);
@@ -124,9 +110,18 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
             }catch (Exception exception){
                 exception.printStackTrace();
             }
-
         }
     }
+
+    private String whereToSave(JFileChooser fC){
+        int retVal = fC.showSaveDialog(null);
+        if (retVal == JFileChooser.APPROVE_OPTION){
+            File file = fC.getSelectedFile();
+            return file.getAbsolutePath();
+        }
+        return null;
+    }
+
 
 
 
