@@ -116,7 +116,7 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
                     JOptionPane.showMessageDialog(null,"Error file must be in png format!",null,1);
                 } else {
                     BufferedImage screenShot = new BufferedImage(screen.getWidth(),screen.getHeight(), BufferedImage.TYPE_INT_RGB);
-                    this.paint(screenShot.createGraphics());
+                    screen.paint(screenShot.createGraphics());
                     ImageIO.write(screenShot, "png",new File(pngSave));
                     JOptionPane.showMessageDialog(null,"Screen captured successfully!",null,1);
                 }
@@ -127,6 +127,8 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
 
         }
     }
+
+
 
 
 }

@@ -44,7 +44,6 @@ public class Board {
         return menWhoMustTake;
     }
 
-
     public void addToGrid(Man figure){
         int x = figure.getX();
         int y = figure.getY();
