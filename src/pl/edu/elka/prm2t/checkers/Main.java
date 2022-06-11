@@ -21,10 +21,12 @@ public class Main {
         JFrame f = new JFrame("Warcaby");
         f.setSize(600, 650);
 
+
         //OKNO FRAME GENERUJE SIĘ PO ŚRODKU
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         f.setLocation(dimension.width/2-f.getSize().width/2,dimension.height/2-f.getSize().height/2);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
         // MENU --> MenuOptionsBar
         MenuOptionsBar mOB = new MenuOptionsBar(s);

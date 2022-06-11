@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
+import java.util.Locale;
 
 
 public class MenuOptionsBar extends JMenuBar implements ActionListener {
@@ -23,6 +23,7 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
 
     public MenuOptionsBar(Screen screen) {
         this.screen = screen;
+
         fileTab = new JMenu("File");
         this.add(fileTab);
 
@@ -47,7 +48,6 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
         undo = new JButton("Undo");
         this.add(undo);
         undo.addActionListener(this);
-
 
 
     }
@@ -83,33 +83,47 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
 
         if (e.getSource() == restart) {
             System.out.println("Restart!");
+            //TODO funkcja do restartu
         }
 
         if (e.getSource() == undo) {
             System.out.println("Undo!");
+            //TODO funkcja do cofania ruchów
         }
 
         if (e.getSource() == printButton) {
+//            try {
+//
+//                System.out.println("Shot!");
+//
+//                //TYLKO DLA ZABLOKOWANEJ TABLICY
+//                Rectangle screenShot = new Rectangle(495,165,555,555);
+//                Robot robot = new Robot();
+//                BufferedImage shot = robot.createScreenCapture(screenShot);
+//                File savedShot = new File("screenshot.png");
+//                ImageIO.write(shot, "png", savedShot);
+//
+//            } catch (Exception exception) {
+//                exception.printStackTrace();
+//
+
+            //FIXME to jest zdecydowanie lepsza metoda na screenshota lecz pokazuje się czarny screen
+
             try {
+                String pngSave = JOptionPane.showInputDialog(null, "Save file", null, 1);
 
-                System.out.println("Shot!");
-//                Dimension sizeOfShot = screen.getSize();
-//                System.out.println(sizeOfShot);
-//                Rectangle boundsOfShot = screen.getBounds();
-//                System.out.println(boundsOfShot);
+                if (!pngSave.toLowerCase().endsWith(".png")){
+                    JOptionPane.showMessageDialog(null,"Error file must be in png format!",null,1);
+                } else {
+                    BufferedImage screenShot = new BufferedImage(screen.getWidth(),screen.getHeight(), BufferedImage.TYPE_INT_RGB);
+                    this.paint(screenShot.createGraphics());
+                    ImageIO.write(screenShot, "png",new File(pngSave));
+                    JOptionPane.showMessageDialog(null,"Screen captured successfully!",null,1);
+                }
 
-                //TYLKO DLA NIE RUSZAJĄCEJ SIĘ TABLICY
-                Rectangle screenShot = new Rectangle(495,165,555,555);
-                Robot robot = new Robot();
-                BufferedImage shot = robot.createScreenCapture(screenShot);
-                File savedShot = new File("screenshot12q.png");
-                ImageIO.write(shot, "png", savedShot);
-
-            } catch (Exception exception) {
+            }catch (Exception exception){
                 exception.printStackTrace();
             }
-
-
 
         }
     }
