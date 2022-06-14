@@ -14,6 +14,7 @@ public class Screen extends JPanel {
     private int offSetX = 44;
     private int offSetY = 24;
     private int turn = 1;
+    private ArrayList<Man> obligatedMen = new ArrayList<>();
 
     public void setBoardRef(Board boardRef){
         this.boardRef = boardRef;
@@ -36,6 +37,9 @@ public class Screen extends JPanel {
         selectedFieldY = fieldY;
     }
 
+    public void setObligatedMenFields(ArrayList<Man> obligatedMen){
+        this.obligatedMen = obligatedMen;
+    }
 
 
     public void paint(Graphics g){
@@ -67,20 +71,10 @@ public class Screen extends JPanel {
     private void drawFieldsOfManWhoMustTakes(Graphics g){
         g.setColor(Color.RED);
 
-        if(turn % 2 == 0){
-            ArrayList<Man> menWhoMustTakes = boardRef.checkForCapture("black");
-            menWhoMustTakes.forEach((man) -> {
-                g.fillRect(offSetX + man.getX()*fieldSize, offSetY + man.getY()*fieldSize, fieldSize, fieldSize);
-            });
-        }
+        obligatedMen.forEach((man) -> {
+            g.fillRect(offSetX + man.getX()*fieldSize, offSetY + man.getY()*fieldSize, fieldSize, fieldSize);
+        });
 
-        if(turn % 2 != 0){
-            ArrayList<Man> menWhoMustTakes = boardRef.checkForCapture("white");
-
-            menWhoMustTakes.forEach((man) -> {
-                g.fillRect(offSetX + man.getX()*fieldSize, offSetY + man.getY()*fieldSize, fieldSize, fieldSize);
-            });
-        }
     }
 
     private void drawAvailableFields(Graphics g){

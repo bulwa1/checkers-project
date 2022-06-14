@@ -6,8 +6,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.*;
+
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Locale;
 
 
@@ -21,11 +23,13 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
     private JButton restart;
     private JButton undo;
     private Screen screen;
+    private Game game;
 
-    public MenuOptionsBar(Screen screen) {
+    public MenuOptionsBar(Screen screen, Game game) {
         this.screen = screen;
+        this.game = game;
 
-        fileTab = new JMenu("File");
+        fileTab = new JMenu("Game");
         this.add(fileTab);
 
         open = new JMenuItem("Open");
@@ -62,6 +66,23 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
 
             if (response == JFileChooser.APPROVE_OPTION) {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+
+
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader(file));
+                    String savedGame = reader.readLine();
+                    reader.close();
+                    game.load(savedGame);
+//                    game.setTurn(Character.getNumericValue(savedGame.charAt(savedGame.length() - 1)));
+//                    game.newGrid(savedGame);
+
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+
                 System.out.println(file);
 
                 //TODO potrzebujemy zczytywacza danych wybranych z komputera
@@ -71,24 +92,39 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
         if (e.getSource() == save) {
             System.out.println("Save!");
 
-            //TODO potrzebujemy tutaj metody na save w boardzie lub gamie
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Select the file with saved game");
 
-//            Board boardToSave = new Board();
-//            try {
-//                boardToSave.saveGrid();
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
+            String savedGame = game.save();
 
+
+            int response = fileChooser.showSaveDialog(null);
+
+            if (response == JFileChooser.APPROVE_OPTION) {
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                    writer.write(savedGame);
+                    writer.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+                //TODO potrzebujemy zczytywacza danych wybranych z komputera
+            }
         }
 
         if (e.getSource() == restart) {
             System.out.println("Restart!");
-            //TODO funkcja do restartu
+            game.reset();
         }
 
         if (e.getSource() == undo) {
             System.out.println("Undo!");
+
+            game.undo();
+            screen.repaint();
+
             //TODO funkcja do cofania ruchów
         }
 

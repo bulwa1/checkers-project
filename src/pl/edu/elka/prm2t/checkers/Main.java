@@ -29,7 +29,7 @@ public class Main {
 
 
         // MENU --> MenuOptionsBar
-        MenuOptionsBar mOB = new MenuOptionsBar(s);
+        MenuOptionsBar mOB = new MenuOptionsBar(s, game);
         f.setJMenuBar(mOB);
 
         f.add(s);
@@ -38,6 +38,8 @@ public class Main {
             public void mouseClicked(MouseEvent e) {
                 final int fieldX = (e.getX() - s.getOffSetX()) / 64;
                 final int fieldY = (e.getY() - s.getOffSetY()) / 64;
+
+//                System.out.println(chosenFigure);
 
                 if(chosenFigure == null){
                     chosenFigure = game.getFigure(fieldX, fieldY);
@@ -53,11 +55,10 @@ public class Main {
                         return;
                     }
 
-                    if(obligatedMen.size() > 0){
-
+                    if(game.obligatedMen().size() > 0){
                        AtomicBoolean isLegal = new AtomicBoolean(false);
 
-                        obligatedMen.forEach(man -> {
+                        game.obligatedMen().forEach(man -> {
                             if(chosenFigure.equals(man)) isLegal.set(true);
                         });
                         if(!isLegal.get()){
@@ -78,10 +79,10 @@ public class Main {
                 if(chosenFigure != null){
                     int fromX = chosenFigure.getX();
                     int fromY = chosenFigure.getY();
-                    boolean stateOfMove = chosenFigure.move(fieldX, fieldY);
-                    if(stateOfMove){
-                        game.nextTurn(fromX, fromY, fieldX, fieldY);
-                        obligatedMen = game.obligatedMen();
+                    String stateOfMove = chosenFigure.move(fieldX, fieldY);
+                    if(!stateOfMove.equals("none")){
+                        game.nextTurn(fromX, fromY, fieldX, fieldY, stateOfMove);
+                        game.obligatedMen();
                     }
                     chosenFigure = null;
                     s.setChosenField(-1, -1);

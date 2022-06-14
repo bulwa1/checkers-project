@@ -7,7 +7,7 @@ public class WhitePlayer extends Player{
     }
 
     @Override
-    protected void createNewMen(){
+    public void createNewMen(){
         for (int i = 0; i < 8; i+=2) {
             for (int j = 5; j <= 7 ; j+=2) {
                 Man manToAdd = new WhiteMan(i, j, boardRef);

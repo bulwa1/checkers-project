@@ -72,7 +72,14 @@ public abstract class Man {
         return false;
     }
 
-    public boolean move(int toX, int toY) {
+    public void undoMove(int toX, int toY){
+        grid[x][y] = null;
+        this.x = toX;
+        this.y = toY;
+        grid[toX][toY] = this;
+    }
+
+    public String move(int toX, int toY) {
         if (checkForTakes()) {
             if (checkIfTakePossible(toX, toY)) {
                 capture(x, y, toX, toY);
@@ -81,18 +88,18 @@ public abstract class Man {
                 this.y = toY;
                 grid[toX][toY] = this;
                 System.out.println("capture");
-                return true;
+                return "capture";
             }
         } else if (x - toX == -1 || x - toX == 1) {
             if (y - toY == -1 || y - toY == 1) {
                 if (checkIfMoveForwardPossible(toX, toY)) {
                     moveForward(toX, toY);
                     System.out.println("normal move");
-                    return true;
+                    return "normal";
                 }
             }
         }
-        return false;
+        return "none";
     }
 }
 

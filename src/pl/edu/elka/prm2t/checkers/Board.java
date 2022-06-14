@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Board {
 
-    private static final Man[][] grid = new Man[8][8];
+    private Man[][] grid = new Man[8][8];
 
     public Man[][] getGrid() {
         return grid;
@@ -77,32 +77,16 @@ public class Board {
         System.out.println("Black's figures: " + blackMenList.size());
     }
 
-
-    // nie testowane
-    public void saveGrid() throws IOException {
-        ArrayList<String> theBoardToSave = new ArrayList<>();
-        for (int j = 0; j < 8; j++) {
-            for (int i = 0; i < 8; i++) {
-                if (grid[i][j] instanceof WhiteMan) theBoardToSave.add("w");
-                if (grid[i][j] instanceof WhiteKing) theBoardToSave.add("W");
-                if (grid[i][j] instanceof BlackMan) theBoardToSave.add("b");
-                if (grid[i][j] instanceof BlackKing) theBoardToSave.add("B");
-                if (grid[i][j] == null) theBoardToSave.add("0");
-
-            }
-            theBoardToSave.add("/n");
-        }
-        for (String text : theBoardToSave) {
-            while(text != null){
-            FileOutputStream writer = new FileOutputStream("gameSave.txt", true);
-            if (!text.equals("/n")) {
-                writer.write(text.getBytes());
-            }
-            writer.flush();
-            writer.close();
-            }
-        }
+    public void changeFigurePosition(int fromX, int fromY, int toX, int toY){
+        grid[fromX][fromY].undoMove(toX, toY);
     }
+
+    public void clear(){
+        grid = new Man[8][8];
+        whiteMenList = new ArrayList<Man>();
+        blackMenList = new ArrayList<Man>();
+    }
+
 }
 
 
