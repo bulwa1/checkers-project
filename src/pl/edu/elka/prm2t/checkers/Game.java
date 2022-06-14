@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 public class Game {
-    private final ArrayList<int[]> movesHistory = new ArrayList<>();
+    private ArrayList<String> history = new ArrayList<>();
     private String gameStatus;
 
 
@@ -29,6 +29,7 @@ public class Game {
         playerWhite = new WhitePlayer(mainBoard);
         playerBlack = new BlackPlayer(mainBoard);
         this.s = s;
+        history.add(save());
 
     }
 
@@ -52,26 +53,19 @@ public class Game {
     }
 
     public void undo(){
-        try{
-            int[] lastMove = movesHistory.get(movesHistory.size() - 1);
-
-            if(lastMove[5] == 1){
-                int capturedManX = (lastMove[1] + lastMove[3])/2;
-                int capturedManY = (lastMove[2] + lastMove[4])/2;
-                Man capturedMan = null;
-                if(lastMove[0] == 0) capturedMan = new BlackMan(capturedManX, capturedManY, mainBoard);
-                if (lastMove[0] == 1) capturedMan = new WhiteMan(capturedManX, capturedManY, mainBoard);
-                mainBoard.addToGrid(capturedMan);
-
+            int lastBoardIndex = history.size() - 2;
+            if(history.size() == 1){
+                reset();
+                return;
             }
-            mainBoard.changeFigurePosition(lastMove[3], lastMove[4], lastMove[1], lastMove[2]);
-            movesHistory.remove(movesHistory.size() - 1);
+            try{
+                loadLastMove(history.get(lastBoardIndex));
+                history.remove(lastBoardIndex);
+            }catch (IndexOutOfBoundsException e){
+                System.out.println("No more moves to undo!");
+            }
 
 
-
-        }catch (IndexOutOfBoundsException e){
-            System.out.println("No more moves to undo!");
-        }
     }
 
     public int getTurn() {
@@ -83,28 +77,8 @@ public class Game {
     }
 
     public void nextTurn(int fromX, int fromY, int toX, int toY, String typeOfMove){
-//        mainBoard.getGrid()
 
-        int WHITE = 0;
-        int BLACK = 1;
-        int MOVE = 0;
-        int CAPTURE = 1;
-
-        int[] mv = new int[6];
-
-        if(typeOfMove.equals("capture")) MOVE = CAPTURE;
-
-        if(turn % 2 == 0){
-            mv = new int[]{BLACK, fromX, fromY, toX, toY, MOVE};
-        }
-
-        if(turn % 2 != 0){
-            mv = new int[]{WHITE, fromX, fromY, toX, toY, MOVE};
-        }
-
-        takeAgain = false;
-
-        movesHistory.add(mv);
+        history.add(save());
 
         if(fromY - toY == 2 || fromY - toY == -2){
             if(turn % 2 == 0 && mainBoard.checkForCapture("black").size() > 0){
@@ -136,26 +110,24 @@ public class Game {
     public ArrayList<Man> obligatedMen(){
         String color = "white";
         if (turn % 2 == 0) color = "black";
-//        if (turn % 2 != 0) color = "white";
-        int[] lastMove = null;
-        if(turn > 1) lastMove = movesHistory.get(movesHistory.size() - 1);
-
-
-        if(takeAgain){
-            if(mainBoard.getGrid()[lastMove[3]][lastMove[4]].checkForTakes() == false){
-                takeAgain = false;
-                System.out.println("No more moves by duble bicie");
-                turn++;
-                return null;
-            }
-            ArrayList<Man> obligatedMan = new ArrayList<>();
-            obligatedMan.add(mainBoard.getGrid()[lastMove[3]][lastMove[4]]);
-            s.setObligatedMenFields(obligatedMan);
-            return obligatedMan;
-        }
+//        int[] lastMove = null;
+//        if(!movesHistory.isEmpty()) lastMove = movesHistory.get(movesHistory.size() - 1);
+//        if(takeAgain){
+//            if(mainBoard.getGrid()[lastMove[3]][lastMove[4]].checkForTakes() == false){
+//                takeAgain = false;
+//                System.out.println("No more moves by duble bicie");
+//                turn++;
+//                return null;
+//            }
+//            ArrayList<Man> obligatedMan = new ArrayList<>();
+//            obligatedMan.add(mainBoard.getGrid()[lastMove[3]][lastMove[4]]);
+//            s.setObligatedMenFields(obligatedMan);
+//            return obligatedMan;
+//        }
         s.setObligatedMenFields(mainBoard.checkForCapture(color));
         return mainBoard.checkForCapture(color);
     }
+
 
     public Man getFigure(int x, int y){
         return mainBoard.getGrid()[x][y];
@@ -177,8 +149,6 @@ public class Game {
 
 
     public String save(){
-//        String[][] gridToSave = new String[8][8];
-//        Man[][] grid = game.getMainBoard().getGrid();
 
         String savedGame = "";
 
@@ -196,8 +166,17 @@ public class Game {
         return savedGame + ";" + turn;
     }
 
+    public void loadLastMove(String savedGame){
+        clear();
+        setTurn(Character.getNumericValue(savedGame.charAt(savedGame.length() - 1)));
+        newGrid(savedGame);
+        obligatedMen();
+        s.repaint();
+    }
+
     public void load(String savedGame){
         clear();
+        history = new ArrayList<String>();
         setTurn(Character.getNumericValue(savedGame.charAt(savedGame.length() - 1)));
         newGrid(savedGame);
         obligatedMen();
@@ -210,6 +189,7 @@ public class Game {
 
     public void reset(){
         turn = 1;
+        history = new ArrayList<String>();
         mainBoard.clear();
         playerWhite.createNewMen();
         playerBlack.createNewMen();

@@ -17,6 +17,7 @@ public class Main {
         Game game = new Game(s);
         s.setBoardRef(game.getMainBoard());
 
+
         //KOD WYŚWIETLAJĄCY OKNO
         JFrame f = new JFrame("Warcaby");
         f.setSize(600, 650);
