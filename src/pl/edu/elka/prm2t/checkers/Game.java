@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Game {
     private ArrayList<String> history = new ArrayList<>();
     private String gameStatus;
+    private Man lastMovedFigure;
 
 
     // tworzenie atrybutów, aby można było się do następnie odnosić
@@ -76,11 +77,12 @@ public class Game {
         turn = number;
     }
 
-    public void nextTurn(int fromX, int fromY, int toX, int toY, String typeOfMove){
+    public void nextTurn(Man movedFigure, String typeOfMove){
 
         history.add(save());
+        lastMovedFigure = movedFigure;
 
-        if(fromY - toY == 2 || fromY - toY == -2){
+        if(typeOfMove.equals("capture")){
             if(turn % 2 == 0 && mainBoard.checkForCapture("black").size() > 0){
                 System.out.println("BLACK TAKES AGAIN");
                 takeAgain = true;
@@ -94,6 +96,7 @@ public class Game {
             }
         }
 
+        takeAgain = false;
         turn++;
         s.nextTurn();
 
@@ -110,20 +113,22 @@ public class Game {
     public ArrayList<Man> obligatedMen(){
         String color = "white";
         if (turn % 2 == 0) color = "black";
-//        int[] lastMove = null;
-//        if(!movesHistory.isEmpty()) lastMove = movesHistory.get(movesHistory.size() - 1);
-//        if(takeAgain){
-//            if(mainBoard.getGrid()[lastMove[3]][lastMove[4]].checkForTakes() == false){
-//                takeAgain = false;
-//                System.out.println("No more moves by duble bicie");
-//                turn++;
-//                return null;
-//            }
-//            ArrayList<Man> obligatedMan = new ArrayList<>();
-//            obligatedMan.add(mainBoard.getGrid()[lastMove[3]][lastMove[4]]);
-//            s.setObligatedMenFields(obligatedMan);
-//            return obligatedMan;
-//        }
+
+        if(takeAgain){
+            ArrayList<Man> obligatedMan = new ArrayList<>();
+            if(lastMovedFigure.checkForTakes() == true){
+                obligatedMan.add(lastMovedFigure);
+                s.setObligatedMenFields(obligatedMan);
+            }
+            if(lastMovedFigure.checkForTakes() == false){
+                takeAgain = false;
+                turn++;
+                s.setObligatedMenFields(obligatedMan);
+                return obligatedMan;
+            }
+            return obligatedMan;
+        }
+
         s.setObligatedMenFields(mainBoard.checkForCapture(color));
         return mainBoard.checkForCapture(color);
     }

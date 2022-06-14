@@ -82,7 +82,7 @@ public class Main {
                     int fromY = chosenFigure.getY();
                     String stateOfMove = chosenFigure.move(fieldX, fieldY);
                     if(!stateOfMove.equals("none")){
-                        game.nextTurn(fromX, fromY, fieldX, fieldY, stateOfMove);
+                        game.nextTurn(chosenFigure, stateOfMove);
                         game.obligatedMen();
                     }
                     chosenFigure = null;
