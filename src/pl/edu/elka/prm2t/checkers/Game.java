@@ -1,15 +1,8 @@
 package pl.edu.elka.prm2t.checkers;
 
-import com.sun.tools.jconsole.JConsoleContext;
 
 import javax.swing.*;
 import java.util.ArrayList;
-
-// to do: zrobić, żeby podczas bicia wielokrotnego pionek mógł się zmienić w króla niet
-// żeby w biciu wielokrotnym można było bić tylko jednym pionkiem /
-// dobracować wczytywanie/zapisywanie /
-// zrobić historie i cofanie /
-// ogarnąć funkcje to wydruku done /
 
 
 public class Game {
@@ -17,7 +10,6 @@ public class Game {
     private Man lastMovedFigure;
 
 
-    // tworzenie atrybutów, aby można było się do następnie odnosić
     private int turn = 1;
     private final Board mainBoard;
     private final Player playerWhite;
@@ -59,6 +51,11 @@ public class Game {
         turn = number;
     }
 
+    /**
+     * Obsługa tur i wielekrotnego bicia
+     * @param movedFigure
+     * @param typeOfMove
+     */
     public void nextTurn(Man movedFigure, String typeOfMove){
 
         history.add(save());
@@ -102,6 +99,10 @@ public class Game {
 
     }
 
+    /**
+     * Figury z przymusem bicia
+     * @return
+     */
     public ArrayList<Man> obligatedMen(){
         String color = "white";
         if (turn % 2 == 0) color = "black";
@@ -130,6 +131,9 @@ public class Game {
         return mainBoard.getGrid()[x][y];
     }
 
+    /**
+     * Sprawdzanie, czy pionki doszły do końca planszy -> awans na damkę
+     */
     public void checkForPlayerPromotion(){
         for (int i = 0; i < 8; i++) {
             if(mainBoard.getGrid()[i][0] instanceof WhiteMan){
@@ -144,7 +148,10 @@ public class Game {
         }
     }
 
-
+    /**
+     * Zapis stanu gry do pliku
+     * @return
+     */
     public String save(){
 
         String savedGame = "";
@@ -169,17 +176,19 @@ public class Game {
         setTurn(turnNumber);
         newGrid(savedGame);
         obligatedMen();
-//        checkForPlayerPromotion();
         s.repaint();
     }
 
+    /**
+     * Wczytanie stanu
+     * @param savedGame
+     */
     public void load(String savedGame){
         clear();
         history = new ArrayList<String>();
         int turnNumber = Integer.parseInt(savedGame.split(";")[1]);
         setTurn(turnNumber);
         newGrid(savedGame);
-//        checkForPlayerPromotion();
         obligatedMen();
         s.repaint();
     }
@@ -188,6 +197,9 @@ public class Game {
         mainBoard.clear();
     }
 
+    /**
+     * Reset gry
+     */
     public void reset(){
         turn = 1;
         history = new ArrayList<String>();
@@ -198,6 +210,10 @@ public class Game {
         s.repaint();
     }
 
+    /**
+     * Tworzenie figur na planszy
+     * @param savedBoard
+     */
     public void newGrid(String savedBoard){
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {

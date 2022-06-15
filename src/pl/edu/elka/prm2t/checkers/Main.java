@@ -85,7 +85,6 @@ public class Main {
                     s.setChosenField(-1, -1);
                     s.repaint();
                     game.checkForPlayerPromotion();
-                    game.GameStatus();
                     return;
 
                 }
