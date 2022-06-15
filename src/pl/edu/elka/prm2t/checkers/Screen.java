@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Screen extends JPanel {
 
-    private final int fieldSize = 64; // wielkość jednego pola
-    private Board boardRef; // referencja do obiektu Board
+    private final int fieldSize = 64;
+    private Board boardRef;
     private int selectedFieldX = -1;
     private int selectedFieldY = -1;
     private int offSetX = 44;
@@ -41,7 +41,6 @@ public class Screen extends JPanel {
         this.obligatedMen = obligatedMen;
     }
 
-
     public void paint(Graphics g){
         super.paintComponent(g);
         this.setBackground(Color.WHITE);
@@ -53,9 +52,11 @@ public class Screen extends JPanel {
 
     }
 
-
+    /**
+     * Rysowanie planszy
+     * @param g
+     */
     private void drawBoard(Graphics g){
-        // szalony algorytm rysowania planszy
         g.setColor(Color.BLACK);
         g.fillRect(offSetX - 6, offSetY -6, 8*fieldSize+12, 8*fieldSize+12);
         g.setColor(Color.WHITE);
@@ -68,6 +69,10 @@ public class Screen extends JPanel {
 
     }
 
+    /**
+     * Zaznaczanie przymusów bicia
+     * @param g
+     */
     private void drawFieldsOfManWhoMustTakes(Graphics g){
         g.setColor(Color.RED);
 
@@ -77,6 +82,10 @@ public class Screen extends JPanel {
 
     }
 
+    /**
+     * Zaznaczanie pionka, który może się ruszyć
+     * @param g
+     */
     private void drawAvailableFields(Graphics g){
         if(selectedFieldY != -1 && selectedFieldX != -1){
             g.setColor(Color.ORANGE);
@@ -84,7 +93,11 @@ public class Screen extends JPanel {
         }
     }
 
-    private void drawMen(Graphics g){ // metoda do rysowania pionków na planszy
+    /**
+     * Rysowanie pionków na planszy
+     * @param g
+     */
+    private void drawMen(Graphics g){
         Man[][] grid = boardRef.getGrid();
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {

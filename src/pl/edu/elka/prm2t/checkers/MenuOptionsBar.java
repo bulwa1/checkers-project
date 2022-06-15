@@ -2,15 +2,10 @@ package pl.edu.elka.prm2t.checkers;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Locale;
 
 
 public class MenuOptionsBar extends JMenuBar implements ActionListener {
@@ -73,8 +68,8 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
                     String savedGame = reader.readLine();
                     reader.close();
                     game.load(savedGame);
-//                    game.setTurn(Character.getNumericValue(savedGame.charAt(savedGame.length() - 1)));
-//                    game.newGrid(savedGame);
+                    JOptionPane.showMessageDialog(null, "Game loaded successfully", null, 1);
+
 
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
@@ -85,7 +80,6 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
 
                 System.out.println(file);
 
-                //TODO potrzebujemy zczytywacza danych wybranych z komputera
             }
         }
 
@@ -106,11 +100,10 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                     writer.write(savedGame);
                     writer.close();
+                    JOptionPane.showMessageDialog(null, "Game saved successfully", null, 1);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-
-                //TODO potrzebujemy zczytywacza danych wybranych z komputera
             }
         }
 
@@ -121,11 +114,8 @@ public class MenuOptionsBar extends JMenuBar implements ActionListener {
 
         if (e.getSource() == undo) {
             System.out.println("Undo!");
-
             game.undo();
             screen.repaint();
-
-            //TODO funkcja do cofania ruchów
         }
 
         if (e.getSource() == printButton) {

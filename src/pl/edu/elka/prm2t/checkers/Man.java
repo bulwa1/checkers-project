@@ -21,32 +21,23 @@ public abstract class Man {
     }
 
 
-    // możliwe że nie działa
-    public boolean checkIfAnyMovePossible() {
-        if (grid[x][y] instanceof WhiteMan) {
-            if (grid[x + 1][y - 1] == null || grid[x - 1][y - 1] == null) {
-                return true;
-            }
-        }
-        if (grid[x][y] instanceof BlackMan) {
-            if (grid[x + 1][y + 1] == null || grid[x - 1][y + 1] == null) {
-                return true;
-            }
-        }
-        if (grid[x][y] instanceof King) {
-            if (grid[x + 1][y - 1] == null || grid[x - 1][y - 1] == null || grid[x + 1][y + 1] == null || grid[x - 1][y + 1] == null) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
+    /**
+     * Sprawdzanie, czy ruch pionka na dane pole jest możliwy (czy jest poprawny)
+     * @param toX pole końcowe X
+     * @param toY pole końcowe Y
+     * @return true, jeśli ruch jest poprawny
+     */
     public boolean checkIfMoveForwardPossible(int toX, int toY) {
     return false;
     }
 
-
+    /**
+     * Zbijanie figury
+     * @param fromX pole początkowe X
+     * @param fromY pole początkowe Y
+     * @param toX pole końcowe X
+     * @param toY pole końcowe Y
+     */
     protected void capture(int fromX, int fromY, int toX, int toY) {
         int targetX = (fromX + toX) / 2;
         int targetY = (fromY + toY) / 2;
@@ -56,7 +47,11 @@ public abstract class Man {
         }
     }
 
-
+    /**
+     * Ruszanie się pionkiem
+     * @param toX pole końcowe X
+     * @param toY pole końcowe Y
+     */
     public void moveForward(int toX, int toY) {
         grid[x][y] = null;
         this.x = toX;
@@ -64,14 +59,29 @@ public abstract class Man {
         grid[toX][toY] = this;
     }
 
+    /**
+     * Sprawdzanie, czy dla danego pionka jest możliwe bicie
+     * @return true, jeśli jest dostępne bicie
+     */
     public boolean checkForTakes() {
         return false;
     }
 
+    /**
+     * Sprawdzenie, czy konkretne bicie jest poprawne
+     * @param toX pole końcowe X
+     * @param toY pole końcowe Y
+     * @return true, jeśli jest poprawne
+     */
     public boolean checkIfTakePossible(int toX, int toY) {
         return false;
     }
 
+    /**
+     * Cofanie ruchu - zmiana obecnego położenia pionka na dawne
+     * @param toX pole końcowe X
+     * @param toY pole końcowe Y
+     */
     public void undoMove(int toX, int toY){
         grid[x][y] = null;
         this.x = toX;
@@ -79,6 +89,13 @@ public abstract class Man {
         grid[toX][toY] = this;
     }
 
+    /**
+     * Funkcja poruszjąca pionek - bada, czy jest możliwe bicie, a jeśli jest to nakazuje bić, w przeciwnym razie
+     * pozwala na zwykłe poruszenie
+     * @param toX pole końcowe X
+     * @param toY pole końcowe Y
+     * @return
+     */
     public String move(int toX, int toY) {
         if (checkForTakes()) {
             if (checkIfTakePossible(toX, toY)) {

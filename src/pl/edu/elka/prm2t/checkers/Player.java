@@ -1,6 +1,5 @@
 package pl.edu.elka.prm2t.checkers;
 
-import java.util.ArrayList;
 
 public abstract class Player {
     protected Board boardRef;

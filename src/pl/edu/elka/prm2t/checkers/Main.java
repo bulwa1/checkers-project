@@ -4,13 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main {
 
     private static Man chosenFigure;
-    private static ArrayList<Man> obligatedMen = new ArrayList<>();
 
     public static void main(String[] args) {
         Screen s = new Screen();
@@ -19,7 +17,7 @@ public class Main {
 
 
         //KOD WYŚWIETLAJĄCY OKNO
-        JFrame f = new JFrame("Warcaby");
+        JFrame f = new JFrame("Checkers");
         f.setSize(600, 650);
 
 
@@ -78,8 +76,6 @@ public class Main {
                     return;
                 }
                 if(chosenFigure != null){
-                    int fromX = chosenFigure.getX();
-                    int fromY = chosenFigure.getY();
                     String stateOfMove = chosenFigure.move(fieldX, fieldY);
                     if(!stateOfMove.equals("none")){
                         game.nextTurn(chosenFigure, stateOfMove);
@@ -89,7 +85,9 @@ public class Main {
                     s.setChosenField(-1, -1);
                     s.repaint();
                     game.checkForPlayerPromotion();
+                    game.GameStatus();
                     return;
+
                 }
             }
 

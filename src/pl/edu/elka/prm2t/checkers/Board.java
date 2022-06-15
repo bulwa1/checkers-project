@@ -1,7 +1,6 @@
 package pl.edu.elka.prm2t.checkers;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -16,14 +15,11 @@ public class Board {
 
     public ArrayList<Man> blackMenList = new ArrayList<>();
 
-    public ArrayList<Man> getWhiteMenList() {
-        return whiteMenList;
-    }
-
-    public ArrayList<Man> getBlackMenList() {
-        return blackMenList;
-    }
-
+    /**
+     * Sprawdzanie, czy dla figur danego koloru występuje bicie
+     * @param color
+     * @return lista figur, które muszą bić (może być pusta)
+     */
     public ArrayList<Man> checkForCapture(String color){
         ArrayList<Man> menWhoMustTake = new ArrayList<>();
 
@@ -44,6 +40,10 @@ public class Board {
         return menWhoMustTake;
     }
 
+    /**
+     * Dodanie figur z planszy do listy figur danego gracza
+     * @param figure
+     */
     public void addToGrid(Man figure){
         int x = figure.getX();
         int y = figure.getY();
@@ -56,6 +56,18 @@ public class Board {
         grid[x][y] = figure;
     }
 
+    public ArrayList<Man> getWhiteMenList() {
+        return whiteMenList;
+    }
+
+    public ArrayList<Man> getBlackMenList() {
+        return blackMenList;
+    }
+
+    /**
+     * Usunięcie figury, zarówno z planszy, jak i z listy graczy
+     * @param figure
+     */
     public void removeFigure(Man figure){
         int x = figure.getX();
         int y = figure.getY();
@@ -77,9 +89,6 @@ public class Board {
         System.out.println("Black's figures: " + blackMenList.size());
     }
 
-    public void changeFigurePosition(int fromX, int fromY, int toX, int toY){
-        grid[fromX][fromY].undoMove(toX, toY);
-    }
 
     public void clear(){
         grid = new Man[8][8];
