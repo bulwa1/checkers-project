@@ -2,18 +2,18 @@ package pl.edu.elka.prm2t.checkers;
 
 import com.sun.tools.jconsole.JConsoleContext;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
-// to do: zrobić, żeby podczas bicia wielokrotnego pionek mógł się zmienić w króla
-// żeby w biciu wielokrotnym można było bić tylko jednym pionkiem
-// dobracować wczytywanie/zapisywanie
-// zrobić historie i cofanie
+// to do: zrobić, żeby podczas bicia wielokrotnego pionek mógł się zmienić w króla niet
+// żeby w biciu wielokrotnym można było bić tylko jednym pionkiem /
+// dobracować wczytywanie/zapisywanie /
+// zrobić historie i cofanie /
 // ogarnąć funkcje to wydruku done /
 
 
 public class Game {
     private ArrayList<String> history = new ArrayList<>();
-    private String gameStatus;
     private Man lastMovedFigure;
 
 
@@ -34,24 +34,6 @@ public class Game {
 
     }
 
-    public String getGameStatus() {
-        checkGameStatus();
-        return gameStatus;
-    }
-
-    public void checkGameStatus(){
-        ArrayList<Man> whiteFigures = mainBoard.getWhiteMenList();
-        ArrayList<Man> blackFigures = mainBoard.getBlackMenList();
-        if(whiteFigures.isEmpty()){
-            gameStatus = "Black won";
-        }
-        if(blackFigures.isEmpty()){
-            gameStatus = "White won";
-        }
-        else
-            gameStatus = "Game in progress";
-
-    }
 
     public void undo(){
             int lastBoardIndex = history.size() - 2;
@@ -81,6 +63,16 @@ public class Game {
 
         history.add(save());
         lastMovedFigure = movedFigure;
+
+        if(mainBoard.whiteMenList.size() == 0){
+            JOptionPane.showMessageDialog(null, "Player Black Wins!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("BLACKS WIN");
+        }
+
+        if(mainBoard.blackMenList.size() == 0){
+            JOptionPane.showMessageDialog(null, "Player White Wins!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("WHITES WIN");
+        }
 
         if(typeOfMove.equals("capture")){
             if(turn % 2 == 0 && mainBoard.checkForCapture("black").size() > 0){
@@ -173,17 +165,21 @@ public class Game {
 
     public void loadLastMove(String savedGame){
         clear();
-        setTurn(Character.getNumericValue(savedGame.charAt(savedGame.length() - 1)));
+        int turnNumber = Integer.parseInt(savedGame.split(";")[1]);
+        setTurn(turnNumber);
         newGrid(savedGame);
         obligatedMen();
+//        checkForPlayerPromotion();
         s.repaint();
     }
 
     public void load(String savedGame){
         clear();
         history = new ArrayList<String>();
-        setTurn(Character.getNumericValue(savedGame.charAt(savedGame.length() - 1)));
+        int turnNumber = Integer.parseInt(savedGame.split(";")[1]);
+        setTurn(turnNumber);
         newGrid(savedGame);
+//        checkForPlayerPromotion();
         obligatedMen();
         s.repaint();
     }
