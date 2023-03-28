@@ -6,7 +6,6 @@ Celem naszego projektu jest odtworzenie w języku Java klasycznej i ponadczasowe
 
 ## Schemat gry
 
-[nie ma jeszcze głównego algorytmu gry]
 
 0. Tura gracza 1
 1. Sprawdzenie, czy gracz ma jeszcze figury [player.figureList] 
